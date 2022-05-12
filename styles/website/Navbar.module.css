@@ -1,0 +1,246 @@
+.container{
+    height: 100px;
+    padding: 0px 50px;
+    top: 0;
+    /*background-color: rgba(25, 128, 182, 0.6);*/
+    position: sticky;
+    z-index: 999;
+}
+.container2{
+    height: 160px;
+    padding: 0px 50px;
+    top: 0;
+
+    background: rgb(0,173,213);
+    background: linear-gradient(193deg, rgba(0,173,213,1) 30%, rgba(0,101,134,1) 50%, rgba(53,178,235,1) 100%);
+    position: sticky;
+    z-index: 999;
+}
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 0 10px;
+}
+.wrapper2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    margin:  0 10px;
+}
+.item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+
+.item:nth-child(2){
+    flex: 3;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.item:last-child{
+    flex: 1;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.callButton {
+    background-color: white;
+    border-radius: 50%;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+}
+.callButton2 {
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid black;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+}
+.texts {
+    margin-left: 17px;
+    color: white;
+}
+.texts2 {
+    margin-left: 17px;
+
+}
+.text:first-child{
+    font-size: 12px;
+    font-weight: 500;
+}
+.text:nth-child(2){
+    font-size: 17px;
+    font-weight: 300;
+
+}
+.text:last-child{
+    font-size: 20px;
+    font-weight: 300;
+
+}
+
+.list {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    color: white;
+
+}
+.list2 {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+
+
+}
+.listItem {
+    margin-right: 30px;
+    font-weight: 300;
+    cursor: pointer;
+    text-align: center;
+
+    font-size: 18px;
+}
+.adminItem{
+    margin-right: 30px;
+    font-weight: 300;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 10px;
+    border: 2px solid white;
+    font-size: 18px;
+    border-radius: 5px;
+}
+.cart {
+    position: relative;
+}
+.favorite {
+    position: relative;
+    margin-right: 20px;
+}
+
+.socialContainer{
+    color: white;
+    margin-right: 15px;
+}
+.socialContainer2{
+
+    margin-right: 15px;
+}
+
+.counter {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+}
+.counter2 {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+}
+
+.border{
+    width: 60%;
+    border-bottom: 1px solid white;
+}
+.searchBar{
+    height: 80px;
+    padding: 20px 0;
+
+    width: 100%;
+}
+.searchWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+.searchContainer{
+    background: white;
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    padding: 5px;
+    border-radius: 7px;
+    border: 1px solid lightgray;
+}
+.searchContainer:focus{
+    border: 2px solid darkgray;
+
+}
+.input{
+    border: none;
+    height: 30px;
+    width: 300px;
+
+}
+.input:focus{
+    outline: none;
+}
+.dropdown{
+    margin-left: 25px;
+    margin-top: 10px;
+    top: 100%;
+    position: absolute;
+}
+.searchList{
+    list-style: none;
+    background: rgba(0, 0, 0, 0.5);
+//background: rgba(0, 191, 255, 0.5);
+    padding: 2px 5px;
+}
+.searchItems{
+    display: flex;
+    align-items: center;
+}
+.searchListItem{
+    cursor: pointer;
+    font-weight: bold;
+
+}
+.searchImg{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}

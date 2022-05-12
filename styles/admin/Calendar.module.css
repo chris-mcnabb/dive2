@@ -1,0 +1,16 @@
+.container{
+
+    flex: 6;
+    padding: 20px 50px;
+}
+.h1{
+    margin-left: 30px;
+    font-weight: 300;
+}
+.wrapper{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

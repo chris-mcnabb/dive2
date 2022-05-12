@@ -1,0 +1,49 @@
+.container{
+    width: 100vw;
+    display: flex;
+    background-color: rgb(242,245,247);
+
+}
+.sidebar{
+    flex: 1;
+
+}
+.wrapper{
+    flex: 4;
+    flex-direction: column;
+}
+.back{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.terug{
+    cursor: pointer;
+}
+.buttonContainer{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.sub{
+    padding: 10px 20px;
+    margin: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    background-color: indianred;
+    //background: rgb(0,173,213);
+    //background: linear-gradient(193deg, rgba(0,173,213,1) 30%, rgba(0,101,134,1) 50%, rgba(53,178,235,1) 100%);
+
+}
+.cardContainer{
+
+    padding: 100px 100px;
+    display: flex;
+    flex-wrap: wrap;
+
+}

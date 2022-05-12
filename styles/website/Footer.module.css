@@ -1,0 +1,49 @@
+.container {
+    height: 100px;
+
+    display: flex;
+    padding: 30px 30px;
+
+
+    position: relative;
+}
+.container2{
+    height: 100px;
+//background-color: rgb(242,245,247);
+    display: flex;
+    padding: 30px 30px;
+
+
+    position: relative;
+}
+.contactContainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.addressContainer {
+
+}
+.contactInfo {
+    font-weight: 300;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 500px) {
+    .container{
+        height: 100px;
+        padding: 20px 30px;
+    }
+    .addressContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .contactInfo    {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+}

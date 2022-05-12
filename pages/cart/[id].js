@@ -1,0 +1,210 @@
+import  {useState, useEffect} from 'react';
+import {DeleteOutline} from '@mui/icons-material'
+import styles from "../../styles/website/Cart.module.css";
+import Image from "next/image";
+import mask from '../../public/img/WEB-Zensee-Pro-M1010S-QBA.jpg'
+import logo from "../../public/img/headerlogo.svg";
+import axios from 'axios';
+import {loadStripe} from "@stripe/stripe-js";
+import {ArrowBackIosNewOutlined} from "@mui/icons-material";
+import {Elements} from "@stripe/react-stripe-js";
+import {useSession} from "next-auth/react";
+import Script from 'next/script'
+import Modal from "../../components/Modal";
+import Head from "next/head";
+import {useSelector, useDispatch} from "react-redux";
+import {useRouter} from "next/router";
+import {shippingMethod} from "../../redux/cartSlice";
+import {deleteCart, deleteCartItem, retrieveProducts, updateCartItem} from "../../redux/apiCalls";
+import useToggle from "../../components/hooks/useToggle";
+import Link from "next/link";
+const stripePromise =  loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+const Cart = () => {
+
+    const cart = useSelector(state=>state.cart);
+
+    const dispatch = useDispatch()
+    const [user, setUser] = useState(false)
+    const [cartQuantity, setCartQuantity] = useState(0)
+
+    const [clientSecret, setClientSecret] = useState('');
+    const [paymentIntent, setPaymentIntent] = useState('');
+    const [showModal, setShowModal] = useToggle()
+    const [shipping, setShipping] = useState({})
+    const [title, setTitle] = useState('')
+    const [couponCode, setCouponCode] = useState('')
+    const [id, setId] = useState(cart.cartId)
+    const {data: session}=useSession()
+
+
+
+    const handleQuantity =  async(e, idx, item) => {
+
+        const difference = e.target.value-item.quantity
+      await updateCartItem(dispatch, e.target.value, id,  item.productId, idx,  (item.price * difference))
+        /*const difference = e.target.value-item.quantity
+        console.log(item.price * difference)
+        dispatch(
+            editProduct({quant: e.target.value, idx, total:  (item.price * difference)})
+        )*/
+
+    }
+    const handleRemoveItem =  async(item, idx) => {
+        console.log('redux', cart.products[idx].productId)
+
+     if(cart.products.length === 1){
+         await deleteCart(dispatch, id, cart)
+      }else{
+          await deleteCartItem(dispatch, id, cart.products[idx].productId, idx, (item.price * item.quantity))
+      }
+       //await deleteCartItem(dispatch, id, mongoCart.items[idx]._id, idx, (item.price * item.quantity))
+    }
+
+   // const stripe =  loadStripe(publishableKey)
+    const handleClick = (data) => {
+        setTitle(data)
+
+        setShowModal()
+    }
+    const handleChange = (e) => {
+        setShipping({[e.target.name]: e.target.value,
+        shippingCost: 10})
+        dispatch(shippingMethod({[e.target.name]: e.target.value,
+            shippingCost: 10}))
+    };
+
+    return (
+        <div className={styles.container}>
+            <Head>
+                <Script src="https://js.stripe.com/v3" async></Script>
+            </Head>
+            <Modal showModal={showModal} cart={cart} setShowModal={setShowModal} title={title} shipping={10} amount={cart.total} location={'checkout'}  stripePromise={stripePromise} clientSecret={clientSecret}  paymentIntent={paymentIntent}/>
+            <div className={styles.header}>
+                <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
+
+                <h1>WinkelWagen</h1>
+            </div>
+            <div className={styles.wrapper}>
+            <div className={styles.left}>
+                {cart.products.map((item, idx)=>(
+                    <div className={styles.product} key={item._id}>
+                        <div className={styles.productDetail}>
+                            <Image src={`/img/${item.img}`} alt='' height={200} width={200} objectFit='contain'/>
+                            <div className={styles.details}>
+                                <span><b>Name:</b> {item.name}</span>
+                                <span><b>ID:</b> {item.modelId}</span>
+                                {item.color && <span><b>Color:</b> {item.color}</span>}
+                                {item.size && <span><b>Size:</b> {item.size}</span>}
+                            </div>
+                        </div>
+                        <div className={styles.priceDetail}>
+                            <div className={styles.productAmountContainer}>
+                                <input  type="number" defaultValue={item.quantity} min={1} className={styles.quantity}
+                                       onChange={(e)=>handleQuantity(e, idx, item)} />
+
+                            </div>
+                            <div className={styles.productPrice}>
+                              <span>  €{Number(item.price*(item.quantity)).toFixed(2)}</span>
+                            </div>
+                            <div className={styles.trashcan} onClick={()=>handleRemoveItem(item, idx)}>
+                                <DeleteOutline />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                ))}
+                <hr className={styles.hr}/>
+            </div>
+            <div className={styles.right}>
+                <div className={styles.topRight}>
+                    {!session &&
+                        <>
+                        <h1 className={styles.h1Summary}>Checkout As:</h1>
+                        <div className={styles.buttonContainer}>
+                        <span className={styles.checkoutButton} onClick={()=>handleClick('Guest')}>
+                        Guest
+                        </span>
+                        <h2 className={styles.h2}>Or</h2>
+                        <span className={styles.checkoutButton} onClick={()=>handleClick('Login')}>
+                        Login
+                        </span>
+                        </div>
+                        </>
+                        }
+
+                    <div className={styles.summary}>
+                        <span className={styles.summaryText}>Choose Shipping Method</span>
+                        <span className={styles.summaryPrice}> <select name="shippingMethod" required onChange={handleChange} className={styles.topInput}>
+                               <option value=""></option>
+                            <option value='PostNL'>PostNL</option>
+                             <option value='DHL'>DHL</option>
+                             <option value='UPS'>UPS</option>
+                             <option value='Fedex'>Fedex</option>
+
+                           </select></span>
+                    </div>
+
+                    <div className={styles.summary}>
+                        <span className={styles.summaryText}>Coupon Code</span>
+                        <input onChange={(e)=>setCouponCode(e.target.value)}className={styles.coupon} type='text' placeholder={'Enter Code...'}/>
+                    </div>
+                    <div className={styles.summary}>
+                        <h2>SUB-TOTAL:</h2>
+                        {cart.total > 0 ?<h2>€{cart.total.toFixed(2)}</h2> : <h2>€0.00</h2>}
+                    </div>
+                    <hr/>
+                </div>
+                <div className={styles.bottomRight}>
+                    <h1 className={styles.h1Summary}>Order Summary</h1>
+                    <div className={styles.summary}>
+                        <span className={styles.summaryText}>Subtotal</span>
+                        {cart.total > 0 ?<span className={styles.summaryPrice}>€{(cart.total/1.21).toFixed(2)}</span> : <h2>€0.00</h2>}
+                    </div>
+                    <div className={styles.summary}>
+                        <span className={styles.summaryText}>Estimated Shipping</span>
+                        {shipping.shippingCost !==undefined ? <span className={styles.summaryPrice}>€{shipping.shippingCost.toFixed(2)}</span>
+                            : <span className={styles.summaryPrice}>€0.00</span>
+                        }
+                    </div>
+                    <div className={styles.summary}>
+                        <span className={styles.summaryText}>Discount</span>
+                        <span className={styles.summaryPrice}>€0.00</span>
+                    </div>
+                    <div className={styles.summary}>
+                        <span className={styles.summaryText}>Tax</span>
+                        {cart.total > 0 ? <span className={styles.summaryPrice}>€{(cart.total-(cart.total/1.21)).toFixed(2)}</span> : <h2>€0.00</h2>}
+                    </div>
+                    <div className={styles.summary}>
+                       <span className={styles.summaryText}>Coupon Code</span>
+                        {couponCode &&   <span>{couponCode}</span>}
+                    </div>
+                    <div className={styles.summary}>
+                        <h2>SUB-TOTAL:</h2>
+                        {cart.total > 0 ?<h2>€{cart.total.toFixed(2)}</h2> : <h2>€0.00</h2>}
+                    </div>
+                    <div className={styles.summary}>
+                        <h2>TOTAL:</h2>
+                        {shipping.shippingCost !==undefined && <h2>€{(cart.total + shipping.shippingCost).toFixed(2)}</h2>}
+                    </div>
+                    <div className={styles.buttonContainer}>
+                            <Link href='/checkout'>
+                         <button
+                            className={styles.button}>
+                            COMPLETE ORDER
+                        </button>
+                            </Link>
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+        </div>
+    );
+};
+
+export default Cart;
+Cart.layout = "L3";

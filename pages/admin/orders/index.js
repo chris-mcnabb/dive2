@@ -1,0 +1,213 @@
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
+import {useRouter} from "next/router";
+import styles from "../../../styles/admin/User.module.css";
+import Link from "next/link";
+import {DeleteOutline, Visibility} from "@material-ui/icons";
+import DataTable from "../../../components/admin/DataTable";
+import TableHeader from "../../../components/admin/TableHeader";
+
+const Orders = ({orders}) => {
+    const router = useRouter()
+    const [initialMan, setInitialMan] = useState([])
+    const [orderStatus, setOrderStatus] = useState('Order Received')
+    const [data, setData] = useState([]);
+    const handleClick = () => {
+
+    }
+
+    const handleCat = (e) => {
+        router.push(`/admin/orders/category/${e.target.value}`)
+    }
+    const handleMan = (e) => {
+        router.push(`/admin/orders/manufacturer/${e.target.value}`)
+    }
+
+    const handleDelete = (id) => {
+        setData(data.filter((item) => item.id !== id));
+    };
+    useEffect(()=>{
+        setData([])
+        console.log(orders)
+       orders.map((option)=>{
+            console.log(option)
+            setData( (prev)=>[...prev, {
+                id: option._id,
+                customer: option.customer,
+                email:  option.email,
+                type: option.purchaseType,
+                total: `€${option.total.toFixed(2)}`,
+                carrier: option.shippingMethod.shippingMethod,
+                status: option.status,
+
+            }])
+
+        })
+
+
+    },[orders])
+
+
+    const statusClass = (index) => {
+        if(index === 0){
+
+            return styles.received;
+        }
+        if(index === 1){
+
+            return styles.prepared
+
+        }
+        if(index === 2){
+
+            return styles.shipped;
+        }
+        if(index === 3) {
+
+            return styles.delivered;
+        }
+        if(index === 4) {
+
+            return styles.cancelled;
+        }
+    };
+    const statusName = (index) => {
+        if(index === 0){
+
+            return 'Order Received'
+        }
+        if(index === 1){
+
+            return 'Ready to Ship'
+
+        }
+        if(index === 2){
+
+            return 'Shipped'
+        }
+        if(index === 3) {
+
+            return 'Delivered';
+        }
+        if(index === 4) {
+
+            return 'Cancelled'
+        }
+    };
+   const columns = [
+        {
+            field: "id",
+            headerName: "Order Number",
+            width: 150,
+
+        },
+
+        {field: "customer", headerName: "Customer", width: 150,
+        },
+        {
+            field: "email",
+            headerName: "Email",
+            width: 150,
+
+        },
+
+        {
+            field: "type",
+            headerName: "Type",
+            width: 150,
+        },
+
+        {
+            field: "total",
+            headerName: "Total",
+            width: 90,
+        },
+        {
+            field: "carrier",
+            headerName: "Carrier",
+            width: 70,
+
+            },
+
+
+
+        {
+            field: "status",
+            headerName: "Status",
+            width: 150,
+           renderCell: (params) => {
+                return (
+                    <div className={statusClass(params.row.status)}>
+                        {statusName(params.row.status)}
+                    </div>
+                )
+
+                }
+            },
+
+
+
+        {
+            field: "view",
+            headerName: "View",
+            width: 150,
+            renderCell: (params) => {
+                return (
+                    <div className={styles.cellAction}>
+                        <Link href={`/admin/orders/${params.row.id}`} style={{textDecoration: "none"}}>
+                            <div className={styles.viewButton}>  <Visibility className={styles.widgetSmIcon} />Display</div>
+                        </Link>
+
+                    </div>
+                );
+            },
+        },
+        {
+            field: "delete",
+            headerName: "Delete",
+            width: 150,
+            renderCell: (params) => {
+                return (
+                    <div className={styles.cellAction}>
+
+                        <div className={styles.deleteButton}> <DeleteOutline  className={styles.widgetSmIcon}/> Delete</div>
+                    </div>
+                );
+            },
+        },
+    ];
+
+console.log(data)
+    return (
+        <div className={styles.container}>
+            <TableHeader  title={'Orders'}  cat={'orders'}/>
+            <div className={styles.searches}>
+                <div className={styles.searchContainer}>
+
+                </div>
+                <div  className={styles.searchContainer}>
+
+                </div>
+            </div>
+
+            <DataTable title={'Orders'} rows={data} cat={'order'} columns={columns} pageOption={[10]} pageSize={10}/>
+        </div>
+    );
+};
+
+export default Orders;
+Orders.layout = "L2";
+export const getServerSideProps = async() => {
+
+    const res = await axios.get(`http://localhost:3000/api/orders`);
+
+
+    return{
+        props: {
+            orders: res.data,
+
+        }
+    }
+
+
+};

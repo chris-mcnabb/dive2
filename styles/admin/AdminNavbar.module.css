@@ -1,0 +1,104 @@
+.topbar {
+
+    height: 100px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #b0c5ce;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 5px 17px 5px rgba(0, 0, 0, 0.66);
+    box-shadow: 5px 5px 17px 5px rgba(0, 0, 0, 0.66);
+
+}
+
+
+.topbarWrapper {
+    height: 100%;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: 300;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.topRight{
+    display: flex;
+    align-items: center;
+
+}
+
+.topbarIconContainer {
+    position: relative;
+    cursor: pointer;
+    margin-left: 20px;
+    color: #555;
+}
+
+.topIconBadge{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.topAvatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.settingsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+
+}
+
+.logOut {
+    margin-right: 10px;
+
+}
+
+.productAddButton2 {
+    width: 80px;
+    border: none;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-box-shadow: 5px 5px 17px 5px rgba(0, 0, 0, 0.66);
+    box-shadow: 5px 5px 17px 5px rgba(0, 0, 0, 0.66);
+}
+.logoutButton {
+    width: 120px;
+    margin-left: 20px;
+    border: none;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-box-shadow: 5px 5px 17px 5px rgba(0, 0, 0, 0.66);
+    box-shadow: 5px 5px 17px 5px rgba(0, 0, 0, 0.66);
+}

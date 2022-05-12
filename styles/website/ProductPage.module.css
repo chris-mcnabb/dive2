@@ -1,0 +1,147 @@
+.container{
+    display: flex;
+    overflow-y: scroll ;
+    flex-direction: column;
+
+;
+
+
+}
+.top {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+    padding:  50px;
+}
+.left{
+    flex: 1;
+}
+
+.right{
+    flex: 1;
+    padding: 20px 50px;
+    flex-direction: column;
+    border: 1px solid slategray;
+    border-radius: 10px;
+}
+.title{
+    font-weight: 600;
+
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #1980b5;
+}
+.img{
+    cursor: pointer;
+}
+
+.thumbnail{
+    padding: 20px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.model{
+    font-weight: 600;
+}
+.desc{
+    margin-bottom: 30px;
+    letter-spacing: 1.5px;
+    font-weight: 300;
+}
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.orderContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+.price{
+    font-weight: 700;
+    color: #1980b5;
+}
+.quantity {
+    width: 50px;
+    height: 40px;
+    margin-left: 20px;
+    border: 1px solid darkslategray;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 18px;
+}
+.quantity:focus{
+    outline: none;
+    border: 2px solid darkslategray;
+}
+
+.button {
+
+    margin-left: 10px;
+    background-color: rgba(25, 128, 181, 0.3);
+    color: #1980b5;
+    border: 2px solid #1980b5;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.favoriteSpan{
+    margin-right: 10px;
+}
+.favoriteButton{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.savedButton{
+    display: flex;
+    align-items: center;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.bottom{
+    display: flex;
+
+    justify-content: space-between;
+    padding: 0 50px 50px;
+
+}
+.bottomLeft, .bottomRight{
+    flex: 1;
+    border: 1px solid slategray;
+    border-radius: 10px;
+}
+.bottomLeft{
+    margin-right: 10px;
+    padding: 20px 50px;
+    flex-direction: column;
+}
+.bottomLeft>h2, .bottomRight>h2{
+    color: #1980b5;
+    font-weight: 300;
+}
+.bottomRight{
+    padding: 20px 50px;
+    flex-direction: column;
+}

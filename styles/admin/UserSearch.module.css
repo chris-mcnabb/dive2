@@ -1,0 +1,97 @@
+.wrapper{
+    background: white;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.5px);
+    -webkit-backdrop-filter: blur(6.5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    padding: 50px 100px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.selection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.h2{
+    color: #1980b5;
+    font-weight: 300;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+.user{
+    display: flex;
+    align-items: center;
+}
+.input{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+.input::placeholder{
+    font-size: 12px;
+}
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.searchButton{
+    margin: 10px;
+    padding: 5px 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    color: #1980b5;
+    background-color: rgba(25, 128, 181, 0.5);
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    transition: 0.2s all;
+    cursor: pointer;
+}
+.searchButton:hover{
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.5);
+}
+.searchButton:active{
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+
+}
+
+.cancelButton{
+    margin: 10px;
+    padding: 5px 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+   color: indianred;
+    background-color: rgba(205, 92, 92, 0.5);
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    transition: 0.2s all;
+    cursor: pointer;
+}
+.cancelButton:hover{
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.5);
+}
+.cancelButton:active{
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+
+}
+.name{
+    margin-right: 5px;
+}
