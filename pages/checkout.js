@@ -62,10 +62,10 @@ const Checkout = () => {
 console.log('cart', cart.processed=== 'succeeded')
     return (
         <div className={styles.container}>
-
+            <Script src="https://js.stripe.com/v3" async></Script>
             {success && <h1>Order Number: {cart.cartId}</h1>}
             <Head>
-                <Script src="https://js.stripe.com/v3" async></Script>
+
             </Head>
             {!success &&
                 <>

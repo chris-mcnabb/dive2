@@ -108,8 +108,9 @@ useEffect(()=>{
 console.log(cart)
     return (
         <div className={styles.container}>
+            <Script src="https://js.stripe.com/v3" async></Script>
             <Head>
-                <Script src="https://js.stripe.com/v3" async></Script>
+
             </Head>
             <Modal showModal={showModal} cart={cart} setShowModal={setShowModal} title={title} shipping={10} amount={cart.total} location={'checkout'}  stripePromise={stripePromise} clientSecret={clientSecret}  paymentIntent={paymentIntent}/>
             <div className={styles.header}>

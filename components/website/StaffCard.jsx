@@ -34,7 +34,7 @@ const CategoryCard = ({category}) => {
             <Image src={remco} alt="" layout="fill" objectFit="contain"/>
 
                 <div className={styles.info}>
-                    <h1 className={styles.title}>Remco Van 't Hooft</h1>
+                    <h1 className={styles.title}>Remco Van &apos;t Hooft</h1>
                     <div className={styles.iconContainer}>
                         <span className={styles.desc}>Course Director</span>
                         {/*<div className={styles.icon}>

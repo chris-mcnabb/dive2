@@ -3,7 +3,7 @@ import styles from '../../../styles/website/Overons.module.css'
 const Faq = ({section, handleClick}) => {
     return (
         <div className={styles.sectionWrapper}>
-            <h1>FAQ's</h1>
+            <h1>FAQ&apos;s</h1>
 
             <div className={styles.infoContainer}>
                 <div className={styles.infoTitle} onClick={(e) => handleClick('1')}>
@@ -37,7 +37,7 @@ const Faq = ({section, handleClick}) => {
                             <ul>
                                 <li>
                                     Begin nu en leer online duiken met RnG DIVING via PADI eLearning in je eigen tempo - altijd
-                                    en overal (ideaal voor drukke schema's)
+                                    en overal (ideaal voor drukke schema&apos;s)
                                 </li>
                                 <li>
                                     Woon een geplande duikcursus bij RnG DIVING bij (ideaal voor het ontmoeten van nieuwe
@@ -86,7 +86,7 @@ const Faq = ({section, handleClick}) => {
                     door het klaslokaal gedeelte online te voltooien via PADI eLearning of home study-opties aangeboden door RnG DIVING.
 
                     De PADI Open Water Diver-cursus is ongelofelijk flexibel en op prestaties gebaseerd, wat betekent
-                    dat RnG DIVING een breed scala aan schema's kan bieden, afgestemd op hoe snel je vooruitgang boekt.
+                    dat RnG DIVING een breed scala aan schema&apos;s kan bieden, afgestemd op hoe snel je vooruitgang boekt.
 
                     De interesse van je instructeur is dat je leert duiken, niet in hoelang je in een klas zit.
                     Training is dus gebaseerd op het aantonen dat je weet wat je moet weten en kunt doen wat je moet doen.
@@ -438,7 +438,7 @@ const Faq = ({section, handleClick}) => {
                 </div>
                 <div className={section === '15' ? styles.infoActive : styles.info}>
                     <p>
-                        Mensen vinden de "gewichtloosheid" van het duiken behoorlijk vrij. Moderne duikmaskers zijn
+                        Mensen vinden de &quot;gewichtloosheid&quot; van het duiken behoorlijk vrij. Moderne duikmaskers zijn
                         verkrijgbaar in doorschijnende modellen, die je misschien liever hebt als een masker je een afgesloten
                         gevoel geeft. Tijdens je duikopleiding met RnG DIVING, geeft je instructeur je voldoende tijd en
                         coaching om vertrouwd te raken met elke leerfase. Je duikinstructeur werkt in je eigen tempo met

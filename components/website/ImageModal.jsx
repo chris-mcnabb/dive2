@@ -20,7 +20,7 @@ console.log(img)
            </div>
             <div>
                 {pic.length > 1 && pic.map((picture, idx)=>(
-                    <Image className={styles.img} value={idx} src={`/img/${picture}`} alt="" height={100} width={100} objectFit="contain" onClick={()=>handlePhoto(idx)}/>
+                    <Image key={idx} className={styles.img} value={idx} src={`/img/${picture}`} alt="" height={100} width={100} objectFit="contain" onClick={()=>handlePhoto(idx)}/>
                 ))}
 
 

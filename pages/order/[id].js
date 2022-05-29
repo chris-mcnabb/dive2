@@ -64,7 +64,7 @@ const Order = ({order}) => {
     return (
         <div className={styles.container}>
             <Head>
-                <Script src="https://js.stripe.com/v3" async></Script>
+                
             </Head>
 
             <div className={styles.header}>

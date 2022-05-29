@@ -23,7 +23,7 @@ export default function Form({total, paymentIntent}) {
     const stripe = useStripe();
     const elements = useElements();
     const dispatch = useDispatch()
-    useEffect(async() => {
+    useEffect(() => {
 
         if (!stripe) {
             return;
