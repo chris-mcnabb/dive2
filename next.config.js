@@ -15,8 +15,5 @@ module.exports = withVideos({
             "firebasestorage.googleapis.com"
         ]
     },
-    i18n: {
-        locales: ['en', 'fr', 'nl', 'de'],
-        defaultLocale: 'en',
-    },
+
 })
