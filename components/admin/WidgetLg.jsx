@@ -1,7 +1,7 @@
 import styles from "../../styles/admin/WidgetLg.module.css";
 import {useEffect, useState} from "react";
 
-import {format} from "timeago.js";
+
 
 export default function WidgetLg() {
     const [orders, setOrders] = useState([]);
