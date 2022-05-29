@@ -36,6 +36,11 @@ const ServiceCard = ({product, cat}) => {
 
             <div className={styles.circle}>
             {product.img && <Image src={`/img/${product.img[0]}`} alt="" height={150} width={150} objectFit="contain"/>}
+
+            </div>
+            <div className={styles.mobileImg}>
+                {product.img && <Image src={`/img/${product.img[0]}`} alt="" height={50} width={150} objectFit="contain"/>}
+
             </div>
 
                 <div className={styles.info}>

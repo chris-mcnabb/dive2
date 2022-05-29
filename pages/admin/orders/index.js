@@ -16,28 +16,22 @@ const Orders = ({orders}) => {
 
     }
 
-    const handleCat = (e) => {
-        router.push(`/admin/orders/category/${e.target.value}`)
-    }
-    const handleMan = (e) => {
-        router.push(`/admin/orders/manufacturer/${e.target.value}`)
-    }
 
     const handleDelete = (id) => {
         setData(data.filter((item) => item.id !== id));
     };
     useEffect(()=>{
         setData([])
-        console.log(orders)
+
        orders.map((option)=>{
             console.log(option)
             setData( (prev)=>[...prev, {
                 id: option._id,
-                customer: option.customer,
+                customer: option.customer.firstName + ' ' + option.customer.lastName,
                 email:  option.email,
                 type: option.purchaseType,
                 total: `€${option.total.toFixed(2)}`,
-                carrier: option.shippingMethod.shippingMethod,
+                carrier: option.shippingMethod?.shippingMethod,
                 status: option.status,
 
             }])
@@ -177,7 +171,7 @@ const Orders = ({orders}) => {
         },
     ];
 
-console.log(data)
+
     return (
         <div className={styles.container}>
             <TableHeader  title={'Orders'}  cat={'orders'}/>

@@ -1,49 +1,85 @@
+
 .container {
-    height: 100px;
 
-    display: flex;
-    padding: 30px 30px;
-
-
-    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    background-color: #1980b5;
 }
-.container2{
-    height: 100px;
-//background-color: rgb(242,245,247);
+.wrapper{
     display: flex;
-    padding: 30px 30px;
-
-
-    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0;
 }
+
 .contactContainer {
     display: flex;
-    width: 100%;
+    color: white;
+
+    padding: 20px 0 ;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 .addressContainer {
-
+    display: flex;
+    flex-direction: column;
 }
 .contactInfo {
     font-weight: 300;
     margin-right: 15px;
-    font-size: 20px;
-}
+    font-size: 18px;
 
-@media screen and (max-width: 500px) {
+}
+.creator{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.app{
+    margin-right: 10px;
+}
+.pic{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+
+}
+.attribute{
+
+}
+.pic>a{
+    font-size: 3px;
+    color: black;
+    text-align: center;
+}
+@media screen and (max-width: 720px) {
     .container{
-        height: 100px;
-        padding: 20px 30px;
-    }
-    .addressContainer{
-        display: flex;
-        flex-direction: column;
+
+        margin-top: 20px;
         justify-content: center;
+
     }
-    .contactInfo    {
-        font-size: 15px;
+.contactContainer{
+    padding: 10px 0 10px;
+}
+    .contactInfo {
+        font-size: 10px;
         font-weight: 500;
     }
+    .creator{
+        font-size: 10px;
+    }
+    .pic{
+      display: none;
+    }
+
 
 }

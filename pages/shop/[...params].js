@@ -15,8 +15,9 @@ import {AddToCart, FavoriteButton} from "../../components/actions/Buttons";
 import {newCart} from "../../redux/apiCalls";
 import {getSession, useSession} from "next-auth/react";
 import useToggle from "../../components/hooks/useToggle";
+import VendorLogos from "../../components/website/VendorLogos";
 
-const Product = ({product}) => {
+const Product = ({product, images}) => {
     const {data: session} = useSession()
     const router = useRouter()
     const {params} = router.query
@@ -25,10 +26,12 @@ const Product = ({product}) => {
     const [color, setColor] = useState('')
     const [size, setSize] = useState('')
     const [showModal, setShowModal] = useToggle()
+    const [disabled, setDisabled] = useState(false)
     const [index, setIndex] = useState(0)
     const [title, setTitle] = useState('')
     const [cart, setCart] = useState('')
     const [favoriteCart, setFavoriteCart] = useState('')
+
     const dispatch = useDispatch();
     const favs = useSelector(state=>state.favorite.favorites)
 
@@ -56,12 +59,23 @@ const Product = ({product}) => {
         setIndex(idx)
     };
 
-    console.log('cart', product._id)
 
+    const handleChange = (e) => {
+        const {name, value} = e.target
+
+   if(name ==='size'){
+       setSize(value)
+   }
+   if(name==='color'){
+       setColor(value)
+   }
+}
+
+    console.log(Object.keys(product).includes('color'))
 
     return (
         <>
-            <Modal showModal={showModal} setShowModal={setShowModal} title={title} img={`/img/${product.img[index]}`} pic={product.img}  product={product} quantity={quantity}/>
+            <Modal showModal={showModal} setShowModal={setShowModal} title={title} img={`/img/${product.img[index]}`} pic={product.img} size={size} color={color} product={product} quantity={quantity}/>
         <div className={styles.container}>
             <Head>
                 <title>RnG Diving</title>
@@ -70,10 +84,13 @@ const Product = ({product}) => {
             </Head>
             <div className={styles.top}>
                 <div className={styles.left}>
-                    <Image className={styles.img} src={`/img/${product.img[index]}`} alt="" height={500} width={500}  objectFit="contain" onClick={()=>{
-                        setTitle('Photo'),
-                            handleClick('Photo')
-                    }}/>
+                    <div className={styles.topImage}>
+                        <Image className={styles.img} src={`/img/${product.img[index]}`} alt="" height={350} width={350}  objectFit="contain" onClick={()=>{
+                            setTitle('Photo'),
+                                handleClick('Photo')
+                        }}/>
+                    </div>
+
                     <div className={styles.thumbnail}>
                         {product.img.length > 1 && product.img.map((picture, idx)=>(
                             <Image className={styles.img} key={product.img._id} value={idx} src={`/img/${picture}`} alt="" height={100} width={100} objectFit="contain" onClick={()=>handlePhoto(idx)}/>
@@ -83,56 +100,73 @@ const Product = ({product}) => {
                     </div>
                 </div>
                 <div className={styles.right}>
+                    <h1 className={styles.title}>{product.manufacturer}</h1>
                     <h1 className={styles.title}>{product.name}</h1>
-                    <h2 className={styles.price}>€{product.price}</h2>
+                    <h2 className={styles.price}>€{product.price.toFixed(2)}</h2>
                     <span className={styles.model}>Model Number: {product.modelId}</span>
                     <p className={styles.desc}>{product.desc}
                     </p>
+
+                        <div className={styles.sizeContainer}>
+                            {product.color.length > 0 &&
+                                <>
+                                <span className={styles.optionText}>Color:</span>
+
+                                <span className={styles.optionText}>
+                                    <select name="color" required onChange={handleChange} className={styles.option}>
+                                <option value=""></option>
+                                        {product.color.map((color, idx)=>(
+                                            <option key={idx} value={color}>{color}</option>
+                                        ))}
+                                    </select>
+                                </span>
+                                </>
+                                }
+                            {product.size.length > 0 &&
+                                <>
+                            <span className={styles.optionText}>Size:</span>
+                            <span className={styles.optionText}> <select name="size" required onChange={handleChange} className={styles.option}>
+                               <option value=""></option>
+                                {product.size.map((size, idx)=>(
+                                    <option key={idx} value={size}>{size}</option>
+                                ))}
+
+                           </select>
+                            </span>
+                                </>
+                            }
+                        </div>
                     <div className={styles.buttonContainer}>
-                        <AddToCart quantity={quantity} setQuantity={setQuantity} handleClick={handleClick} setTitle={setTitle}/>
-                        <FavoriteButton dispatch={dispatch} product={product} quantity={quantity} favs={favs} favoriteCart={favoriteCart} session={session}/>
+                        <AddToCart quantity={quantity} setQuantity={setQuantity} max={product.stock} handleClick={handleClick} setTitle={setTitle}/>
+                        <FavoriteButton dispatch={dispatch} product={product} quantity={quantity} favs={favs}  favoriteCart={favoriteCart} session={session}/>
+                    </div>
+                    <div className={styles.bottom}>
+
+                        <div className={styles.bottomRight}>
+                            <h2>Ordering Information</h2>
+                            <ul>
+                                <li>
+                                    *Same Day Shipping
+                                </li>
+                                <li>
+                                    Free Shipping for orders over €70.00
+                                </li>
+                                <li>
+                                    Free Returns
+                                </li>
+                                <li>
+                                    Pay with iDeal, credit card, or in store
+                                </li>
+                            </ul>
+
+                        </div>
                     </div>
                 </div>
 
             </div>
-            <hr/>
-            <div className={styles.bottom}>
-                <div className={styles.bottomLeft}>
-                    <h2>Specifications</h2>
-                    <ul>
-                        <li>
-                            *Same Day Shipping
-                        </li>
-                        <li>
-                            Free Shipping for orders over €50.00
-                        </li>
-                        <li>
-                            Free Returns
-                        </li>
-                        <li>
-                            Pay with iDeal, credit card, or in store
-                        </li>
-                    </ul>
-                </div>
-                <div className={styles.bottomRight}>
-                    <h2>Ordering Information</h2>
-                    <ul>
-                        <li>
-                            *Same Day Shipping
-                        </li>
-                        <li>
-                            Free Shipping for orders over €50.00
-                        </li>
-                        <li>
-                            Free Returns
-                        </li>
-                        <li>
-                            Pay with iDeal, credit card, or in store
-                        </li>
-                    </ul>
 
-                </div>
-            </div>
+
+            <VendorLogos logos={images}/>
         </div>
         </>
     );
@@ -144,9 +178,11 @@ Product.layout = "L3";
 export const getServerSideProps = async ({params}) =>{
 
     const res = await axios.get(`http://localhost:3000/api/products/${params.params[1]}`);
+    const img = await axios.get(`http://localhost:3000/api/images`);
     return{
         props:{
             product: res.data,
+            images: img.data,
 
 
         }

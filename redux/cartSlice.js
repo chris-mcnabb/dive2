@@ -11,6 +11,7 @@ const cartSlice = createSlice({
         cartId: 'guest',
         isFetching: false,
         setToPay: false,
+        orders: {}
 
     },
     reducers: {
@@ -65,6 +66,7 @@ const cartSlice = createSlice({
             state.quantity = 0;
             state.total = 0;
             state.cartId = 'guest';
+            state.shipping = {}
         },
         makePayment: (state) => {
             state.setToPay = true;
@@ -77,10 +79,13 @@ const cartSlice = createSlice({
         },
         shippingMethod: (state, action) => {
             state.shipping = action.payload
+        },
+        getOrder: (state, action) =>{
+            state.orders = action.payload
         }
 
     }
 })
 
-export const {addProduct, clearCart, removeProduct, addProcess, editProduct, setTotal, cartStart, shippingMethod, newId} = cartSlice.actions;
+export const {addProduct, clearCart, removeProduct, addProcess, editProduct, setTotal, cartStart, shippingMethod, newId, getOrder} = cartSlice.actions;
 export default cartSlice.reducer;

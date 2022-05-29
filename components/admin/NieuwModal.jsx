@@ -4,9 +4,12 @@ import {AvTimerOutlined, PersonOutline, SchoolOutlined, Store, TrendingUp, Warni
 import Link from 'next/link'
 import {useRouter} from "next/router";
 
-const NieuwModal = ({handleClick}) => {
+const NieuwModal = ({handleClick, setShowModal}) => {
     return (
         <div className={styles.wrapper}>
+              <span onClick={(()=>setShowModal())} className={styles.close}>
+                  X
+              </span>
             <h1 className={styles.h1}>Select</h1>
             <div className={styles.selection}>
 

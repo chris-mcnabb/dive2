@@ -37,6 +37,7 @@ import {
     AccountCircleOutlined, Badge, CalendarViewMonth, CalendarViewMonthOutlined,
 } from "@mui/icons-material";
 import logo from "../../public/img/headerlogo.svg";
+import {WebOutlined} from "@material-ui/icons";
 const Sidebar = () => {
     const [active, setActive] =  useState("")
 
@@ -45,6 +46,7 @@ const Sidebar = () => {
     }
     return (
         <div className={styles.sidebar}>
+            <Link href="/">
             <div className={styles.top}>
                 <Image src={logo}
                        priority={true}
@@ -55,25 +57,25 @@ const Sidebar = () => {
                 />
 
             </div>
-
+            </Link>
             <div className={styles.center}>
                 <ul className={styles.ul}>
                     <p className={styles.title}>MAIN</p>
                     <Link href="/admin/">
-                        <li className={active == "Home" ? styles.liActive : styles.li} onClick={()=>handleClick("Home")}>
+                        <li className={active === "Home" ? styles.liActive : styles.li} onClick={()=>handleClick("Home")}>
                         <Dashboard className={styles.icon}/>
                         <span className={styles.span}>Dashboard</span>
                     </li>
                     </Link>
                     <p className={styles.title}>BOOK</p>
                         <Link href="/admin/new/lesson">
-                            <li className={active == "Lessons" ? styles.liActive : styles.li} onClick={()=>handleClick("Lessons")}>
+                            <li className={active === "Lessons" ? styles.liActive : styles.li} onClick={()=>handleClick("Lessons")}>
                                 <SchoolOutlined className={styles.icon} />
                                 <span className={styles.span}>Nieuw Lesson</span>
                             </li>
                         </Link>
                     <Link href="/admin/new/sale">
-                        <li className={active == "newSale" ? styles.liActive : styles.li} onClick={()=>handleClick("newSale")}>
+                        <li className={active === "newSale" ? styles.liActive : styles.li} onClick={()=>handleClick("newSale")}>
                         <AttachMoney className={styles.icon} />
                         <span  className={styles.span}>New Sale</span>
                     </li>
@@ -84,25 +86,25 @@ const Sidebar = () => {
                     </li>
                     <p className={styles.title}>SCHEDULING</p>
                     <Link href="/admin/calendar">
-                        <li className={active == "Calendar" ? styles.liActive : styles.li} onClick={()=>handleClick("Calendar")}>
+                        <li className={active === "Calendar" ? styles.liActive : styles.li} onClick={()=>handleClick("Calendar")}>
                             <CalendarViewMonthOutlined className={styles.icon} />
                             <span className={styles.span}>View Calendar</span>
                         </li>
                     </Link>
                     <Link href="/admin/calendar/lessons">
-                        <li className={active == "LessonCalendar" ? styles.liActive : styles.li} onClick={()=>handleClick("LessonCalendar")}>
+                        <li className={active === "LessonCalendar" ? styles.liActive : styles.li} onClick={()=>handleClick("LessonCalendar")}>
                             <SchoolOutlined className={styles.icon} />
                             <span className={styles.span}>Lessons</span>
                         </li>
                     </Link>
                     <Link href="/admin/calendar/rental">
-                        <li className={active == "Rental" ? styles.liActive : styles.li} onClick={()=>handleClick("Rental")}>
+                        <li className={active === "Rental" ? styles.liActive : styles.li} onClick={()=>handleClick("Rental")}>
                             <AvTimerOutlined className={styles.icon} />
                             <span className={styles.span}>Rental</span>
                         </li>
                     </Link>
                     <Link href="/admin/calendar/service">
-                        <li className={active == "Service" ? styles.liActive : styles.li} onClick={()=>handleClick("Service")}>
+                        <li className={active === "Service" ? styles.liActive : styles.li} onClick={()=>handleClick("Service")}>
                             <WarningRounded className={styles.icon}/>
                             <span className={styles.span}>Service</span>
                         </li>
@@ -115,19 +117,19 @@ const Sidebar = () => {
 
                     <p className={styles.title}>LISTS</p>
                     <Link href="/admin/sales">
-                        <li className={active == "Sales" ? styles.liActive : styles.li} onClick={()=>handleClick("Sales")}>
+                        <li className={active === "Sales" ? styles.liActive : styles.li} onClick={()=>handleClick("Sales")}>
                             <TrendingUp className={styles.icon}/>
                             <span className={styles.span}>Sales</span>
                         </li>
                     </Link>
                     <Link href="/admin/users/customer">
-                        <li className={active == "Customer" ? styles.liActive : styles.li} onClick={()=>handleClick("Customer")}>
+                        <li className={active === "Customer" ? styles.liActive : styles.li} onClick={()=>handleClick("Customer")}>
                         <PersonOutline  className={styles.icon}/>
                         <span  className={styles.span}>Customers</span>
                     </li>
                     </Link>
                         <Link href="/admin/users/employee">
-                            <li className={active == "Employee" ? styles.liActive : styles.li} onClick={()=>handleClick("Employee")}>
+                            <li className={active === "Employee" ? styles.liActive : styles.li} onClick={()=>handleClick("Employee")}>
                         <Badge className={styles.icon}/>
                         <span  className={styles.span}>Instructors/Employees</span>
                     </li>
@@ -148,8 +150,15 @@ const Sidebar = () => {
                         <WarningRounded className={styles.icon}/>
                         <span  className={styles.span}>Service</span>
                     </li>
-
+                    <p className={styles.title}>SITE</p>
+                    <Link href="/admin/maintenance">
+                        <li className={active === "Maintenance" ? styles.liActive : styles.li} onClick={()=>handleClick("Maintenance")}>
+                        <WebOutlined   className={styles.icon}/>
+                        <span  className={styles.span}>Maintenance</span>
+                    </li>
+                    </Link>
                     <p className={styles.title}>USER</p>
+
                     <li  className={styles.li}>
                         <AccountCircleOutlined   className={styles.icon}/>
                         <span  className={styles.span}>Profile</span>

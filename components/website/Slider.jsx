@@ -1,19 +1,11 @@
 import styles from "../../styles/website/Slider.module.css"
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Link from 'next/link'
-const Slider = () => {
+const Slider = ({pics}) => {
     const [index, setIndex] = useState(0)
-    const images =[
-      '/img/slider/1_1584619536New.jpeg',
-        '/img/slider/2_1411059630.jpeg',
-        '/img/slider/2_1431692400.jpeg',
-        '/img/slider/8_1411059632.jpeg',
-        '/img/slider/9_1411059633.jpeg',
-        '/img/slider/10_1411059633.jpeg'
 
 
-    ];
     const handleArrow = (direction) => {
         if(direction==="left"){
             setIndex(index !==0 ? index-1 : 5)
@@ -38,9 +30,10 @@ const Slider = () => {
 
             <div className={styles.wrapper} style={{transform: `translateX(${-100*index}vw)`}}>
 
-                    {images.map((img, i)=>(
-                        <div key={i} className={styles.imgContainer}>
-                        <Image className={styles.img} src={img}  alt="" layout="fill" objectFit="cover"/>
+                    {pics.map((img)=>(
+                        img.webPic &&
+                        <div key={img._id} className={styles.imgContainer}>
+                        <Image className={styles.img} src={img.webPic} priority={true}  alt="" layout="fill" objectFit="cover"/>
 
                         </div>
                     ))}

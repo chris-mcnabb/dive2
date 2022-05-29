@@ -1,7 +1,7 @@
 import styles from '../../../styles/admin/EditProduct.module.css'
 import {useRouter} from "next/router";
 import TableHeader from "../../../components/admin/TableHeader";
-import React from "react";
+import  {useState} from "react";
 import Image from "next/image";
 import Chart from "../../../components/admin/Chart";
 import mask from '../../../public/img/WEB-Zensee-Pro-M1010S-QBA.jpg'
@@ -11,7 +11,23 @@ import {Publish} from '@mui/icons-material';
 const Product = ({product}) => {
     const router = useRouter()
     const {params} = router.query
-    console.log(product)
+    const [inputs, setInputs] = useState({})
+    const handleChange = (e) => {
+        const {name, value} = e.target
+        if(name==='stock'){
+
+            setInputs(prev=>{
+                return {...prev, [name]: value}
+            })
+        }
+
+    };
+    const handleClick = (e) => {
+        e.preventDefault()
+
+        console.log(+inputs.stock + product.stock)
+    }
+    console.log(typeof(product.stock))
     return (
     <div className={styles.container}>
         <TableHeader  title={product.name}  cat={'product'}/>
@@ -19,7 +35,11 @@ const Product = ({product}) => {
             <div className={styles.productTopLeft}>
                 <div className={styles.productInfoLeft}>
                     <div className={styles.productImgContainer}>
-                        <Image src={mask} alt='' height={200} width={200} objectFit='contain'/>
+                        {
+                            product.img.length >=1 ?
+                                <Image src={`/img/${product.img[0]}`} alt='' height={200} width={200} objectFit='contain'/> :
+                                <Image src={mask} alt='' height={200} width={200} objectFit='contain'/>
+                        }
                     </div>
                 </div>
                 <div className={styles.productInfoRight}>
@@ -69,14 +89,15 @@ const Product = ({product}) => {
                 <div className={styles.productFormCenter}>
                     <label htmlFor="textarea">Description</label>
                     <textarea/>
-                    <label>Stock</label>   <input type="text"  placeholder={product.stock}/>
+                    <label>Stock</label>   <input type="text" name='stock'  onChange={handleChange} placeholder={product.stock}/>
+
                     <label>Stock</label>   <input type="text"  placeholder={product.stock}/>
                     <label>Stock</label>   <input type="text"  placeholder={product.stock}/>
 
                 </div>
                 <div className={styles.productFormRight}>
                     <div className={styles.productUpload}>
-                        <Image src={mask} alt='' height={150} width={150} objectFit='contain' className={styles.productUploadImg}/>
+                        <Image src={`/img/${product.img[0]}`} alt='' height={150} width={150} objectFit='contain' className={styles.productUploadImg}/>
                         <label htmlFor="file">
                             <Publish/>
                         </label>

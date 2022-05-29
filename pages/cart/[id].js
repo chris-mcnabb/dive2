@@ -22,26 +22,35 @@ const stripePromise =  loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 const Cart = () => {
 
     const cart = useSelector(state=>state.cart);
-
+    const guest = useSelector(state=>state.guest)
     const dispatch = useDispatch()
-    const [user, setUser] = useState(false)
+    const [complete, setComplete] = useToggle()
     const [cartQuantity, setCartQuantity] = useState(0)
-
+    const [selected, setSelected] = useState('')
     const [clientSecret, setClientSecret] = useState('');
     const [paymentIntent, setPaymentIntent] = useState('');
     const [showModal, setShowModal] = useToggle()
     const [shipping, setShipping] = useState({})
     const [title, setTitle] = useState('')
+    const [showCheckout, setShowCheckout] = useToggle()
     const [couponCode, setCouponCode] = useState('')
     const [id, setId] = useState(cart.cartId)
     const {data: session}=useSession()
 
+useEffect(()=>{
+    if(guest.isFetching){
+        setShowCheckout()
+    }
+    if(session){
+        setShowCheckout()
+    }
 
+},[guest, session])
 
     const handleQuantity =  async(e, idx, item) => {
 
         const difference = e.target.value-item.quantity
-      await updateCartItem(dispatch, e.target.value, id,  item.productId, idx,  (item.price * difference))
+      await updateCartItem(dispatch, e.target.value, id,  item.productId, idx,  (item.price * difference), session)
         /*const difference = e.target.value-item.quantity
         console.log(item.price * difference)
         dispatch(
@@ -50,12 +59,12 @@ const Cart = () => {
 
     }
     const handleRemoveItem =  async(item, idx) => {
-        console.log('redux', cart.products[idx].productId)
+
 
      if(cart.products.length === 1){
-         await deleteCart(dispatch, id, cart)
+         await deleteCart(dispatch, id, cart, session)
       }else{
-          await deleteCartItem(dispatch, id, cart.products[idx].productId, idx, (item.price * item.quantity))
+          await deleteCartItem(dispatch, id, cart.products[idx].productId, idx, (item.price * item.quantity), session)
       }
        //await deleteCartItem(dispatch, id, mongoCart.items[idx]._id, idx, (item.price * item.quantity))
     }
@@ -67,12 +76,36 @@ const Cart = () => {
         setShowModal()
     }
     const handleChange = (e) => {
-        setShipping({[e.target.name]: e.target.value,
-        shippingCost: 10})
-        dispatch(shippingMethod({[e.target.name]: e.target.value,
-            shippingCost: 10}))
-    };
 
+       setSelected(e.target.value)
+        setComplete()
+        if(e.target.value === 'Winkel'){
+            setShipping({'shippingMethod': e.target.value, 'shippingCost': 0})
+            dispatch(shippingMethod({'shippingMethod': e.target.value,
+                shippingCost:0}))
+        }
+        if(e.target.value === 'PostNL'){
+            if(cart.total >= 70){
+                setShipping({'shippingMethod': e.target.value, 'shippingCost': 0})
+                dispatch(shippingMethod({'shippingMethod': e.target.value,
+                    shippingCost: 0}))
+            }else{
+                setShipping({'shippingMethod': e.target.value, 'shippingCost': 6.95})
+                dispatch(shippingMethod({'shippingMethod': e.target.value,
+                    shippingCost: 6.95}))
+            }
+        }
+
+
+
+
+
+        /*setShipping({[e.target.name]: e.target.value,
+        shippingCost: 6.95})
+        dispatch(shippingMethod({[e.target.name]: e.target.value,
+            shippingCost: 6.95}))*/
+    };
+console.log(cart)
     return (
         <div className={styles.container}>
             <Head>
@@ -80,7 +113,9 @@ const Cart = () => {
             </Head>
             <Modal showModal={showModal} cart={cart} setShowModal={setShowModal} title={title} shipping={10} amount={cart.total} location={'checkout'}  stripePromise={stripePromise} clientSecret={clientSecret}  paymentIntent={paymentIntent}/>
             <div className={styles.header}>
-                <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
+               <div className={styles.backArrow}>
+                   <ArrowBackIosNewOutlined  className={styles.terug}/><h1 > Terug</h1>
+               </div>
 
                 <h1>WinkelWagen</h1>
             </div>
@@ -89,7 +124,13 @@ const Cart = () => {
                 {cart.products.map((item, idx)=>(
                     <div className={styles.product} key={item._id}>
                         <div className={styles.productDetail}>
-                            <Image src={`/img/${item.img}`} alt='' height={200} width={200} objectFit='contain'/>
+                            <div  className={styles.mainImage}>
+                                <Image  src={`/img/${item.img}`} alt='' height={200} width={200} objectFit='contain'/>
+                            </div>
+                            <div  className={styles.mobileImage}>
+                                <Image  src={`/img/${item.img}`} alt='' height={50} width={70} objectFit='contain'/>
+                            </div>
+
                             <div className={styles.details}>
                                 <span><b>Name:</b> {item.name}</span>
                                 <span><b>ID:</b> {item.modelId}</span>
@@ -108,7 +149,9 @@ const Cart = () => {
                             </div>
                             <div className={styles.trashcan} onClick={()=>handleRemoveItem(item, idx)}>
                                 <DeleteOutline />
-
+                            </div>
+                            <div className={styles.delete}  onClick={()=>handleRemoveItem(item, idx)}>
+                                <span>X</span>
                             </div>
 
                         </div>
@@ -120,7 +163,7 @@ const Cart = () => {
             </div>
             <div className={styles.right}>
                 <div className={styles.topRight}>
-                    {!session &&
+                    {(!showCheckout)  &&
                         <>
                         <h1 className={styles.h1Summary}>Checkout As:</h1>
                         <div className={styles.buttonContainer}>
@@ -137,14 +180,17 @@ const Cart = () => {
 
                     <div className={styles.summary}>
                         <span className={styles.summaryText}>Choose Shipping Method</span>
-                        <span className={styles.summaryPrice}> <select name="shippingMethod" required onChange={handleChange} className={styles.topInput}>
-                               <option value=""></option>
-                            <option value='PostNL'>PostNL</option>
-                             <option value='DHL'>DHL</option>
-                             <option value='UPS'>UPS</option>
-                             <option value='Fedex'>Fedex</option>
+                        <div className={styles.checkBox}>
 
-                           </select></span>
+                               <input id='Winkel' type="radio" checked={selected === 'Winkel'} value='Winkel' onChange={handleChange}/>
+                               <label className={styles.checkboxLabel}>Winkel</label>
+
+                                <input id='PostNL' type="radio"   checked={selected === 'PostNL'} value='PostNL' onChange={handleChange}/>
+                                <label className={styles.checkboxLabel}>PostNL </label>
+
+
+                        </div>
+
                     </div>
 
                     <div className={styles.summary}>
@@ -189,14 +235,14 @@ const Cart = () => {
                         <h2>TOTAL:</h2>
                         {shipping.shippingCost !==undefined && <h2>€{(cart.total + shipping.shippingCost).toFixed(2)}</h2>}
                     </div>
-                    <div className={styles.buttonContainer}>
-                            <Link href='/checkout'>
-                         <button
-                            className={styles.button}>
-                            COMPLETE ORDER
-                        </button>
-                            </Link>
-                    </div>
+                    {(complete) && <div className={styles.buttonContainer}>
+                        <Link href='/checkout'>
+                            <button
+                                className={styles.button}>
+                                COMPLETE ORDER
+                            </button>
+                        </Link>
+                    </div>}
                 </div>
 
 

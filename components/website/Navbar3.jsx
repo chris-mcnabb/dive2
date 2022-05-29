@@ -20,11 +20,14 @@ import useToggle from "../hooks/useToggle";
 import {clearCart} from "../../redux/cartSlice";
 import {ExitToApp} from "@material-ui/icons";
 import {clearFavorite} from "../../redux/favoriteSlice";
+import Hamburger from "./Hamburger";
+import MainNavigation from "./MainNavigation";
+
 const Navbar = () => {
     const {data: session} = useSession()
     const {quantity, cartId} = useSelector(state=>state.cart);
     const cart = useSelector(state=>state.cart)
-
+    const inventory = useSelector(state=>state.item.items)
     const favorite = useSelector(state=>state.favorite);
     const [showDropdown, setShowDropdown] =useToggle()
     const [user, setUser] = useState('')
@@ -32,6 +35,7 @@ const Navbar = () => {
     const [filteredResults, setFilteredResults] = useState([]);
     const [showModal, setShowModal] = useToggle()
     const [active, setActive] = useToggle()
+    const [open, setOpen] = useState(false)
     const [title, setTitle] = useState('')
     const test = useRef(null);
     const dispatch = useDispatch();
@@ -40,27 +44,7 @@ const Navbar = () => {
         setUser(session)
     },[session])
 
-    const searchItems = (searchValue) => {
-        setShowDropdown()
-        setSearchInput(searchValue)
-        const filteredData = inventory.filter((item)=>{
-            return Object.values(item).join("").toLowerCase().includes(searchInput.toLowerCase())
-        })
-        setFilteredResults(filteredData)
-    };
 
-    const handleSearch = (e) => {
-        setShowDropdown()
-        setFilteredResults([])
-        test.current.reset()
-
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(e.target.value)
-
-    };
     const handleClick = () => {
         setShowModal();
     }
@@ -74,112 +58,21 @@ const Navbar = () => {
         signOut()
 
     }
-console.log(cartId)
+console.log(session)
     return (
         <>
         <Modal showModal={showModal} setShowModal={setShowModal} location={'home'} title={title}/>
         <div className={styles.container2}>
             <div className={styles.wrapper2}>
-                <div className={styles.item}>
+                <div className={styles.mainImage}>
                     <Image className={styles.logo} src={logo} alt="" height={160} width={200} objectFit="contain"/>
                 </div>
-                <div className={styles.item}>
-                    <ul className={styles.list}>
-                        <Link href="/" >
-                            <li className={styles.listItem}>Home</li>
-                        </Link>
-                        <Link href="/learn" >
-                            <li className={styles.listItem}>Learn to Dive </li>
-                        </Link>
-                        <Link href="/shop" >
-                            <li className={styles.listItem}>Shop</li>
-                        </Link>
-                        <Link href="/overons" >
-                            <li className={styles.listItem}>Over Ons</li>
-                        </Link>
-                        <Link href="/rental" >
-                            <li className={styles.listItem}>Rentals</li>
-                        </Link>
-                        <Link href="/service" >
-                            <li className={styles.listItem}>Service</li>
-                        </Link>
-                        {(user?.isEmployee || user?.isAdmin) &&
-                            <Link href="/admin" >
-                                <li className={styles.adminItem}>Admin</li>
-                            </Link>
-                        }
-                        {!session?.user ?
-                            <li className={styles.listItem}  onClick={()=>{
-                                setTitle('Login'),
-                                    handleClick('Login')
-                            }
-                            } >Log In/Register</li>
-                            :<>
-                                <li className={styles.listItem}>
-                                    <div className={styles.avatar} onClick={() => setActive()}>
-                                        <div className={styles.avatarText}>
-                                            {session &&
-                                                <span>{session?.user.firstName[0].toUpperCase()}{session?.user.lastName[0].toUpperCase()}</span>}
-                                        </div>
-                                    </div>
-                                    <div className={active === true ? styles.infoBoxContainerActive : styles.infoBoxContainer}
-                                         onClick={() => setActive()}>
-                                        <div className={styles.infoBox} >
-
-
-                                            <div className={styles.popUpTitle}>
-                                                <h3>👋 Dag {session?.firstName}</h3>
-
-                                            </div>
-                                            <div className={styles.popUpOptions}>
-                                                <Link href={`/admin/users/employee/${session?.id}`}>
-                                    <span>
-                                    <AccountCircleOutlined className={styles.popUpIcon}/>
-                                     Profile
-                                </span>
-                                                </Link>
-                                                <span onClick={handleLogOut}>
-                                       <ExitToApp className={styles.popUpIcon}/>
-                                    Logout
-                                </span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </>}
-
-
-                    </ul>
-                    <div className={styles.searchBar}>
-                        <form className={styles.searchWrapper}  ref={test} onSubmit={(e)=>handleSubmit(e.target.value)}>
-                            <div className={styles.searchContainer}>
-                                <input className={styles.input}
-
-                                       placeholder="Search..."
-                                       onChange={(e)=> searchItems(e.target.value)}
-                                />
-                                <SearchOutlined style={{color: "gray", fontSize: 16}}/>
-                            </div>
-                            {showDropdown &&
-                                <div className={styles.dropdown}>
-                                    {filteredResults.map((items) => (
-                                        <div key={1} className={styles.searchList}>
-                                            <Link style={{textDecoration: "none", color: "black"}} href="/shop/masks/555">
-                                                <div className={styles.searchItems}>
-                                                    <Image className={styles.searchImg} src={mask} alt="" height={30} width={30}/>
-                                                    <option className={styles.searchListItem} onClick={()=>handleSearch(items)}>
-                                                        {items.title}
-                                                    </option>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    ))}
-
-                                </div>}
-                        </form>
-                    </div>
+                <div className={styles.mainImageMobile}>
+                    <Image className={styles.logo2} src={logo} alt="" height={100} width={150} objectFit="contain"/>
                 </div>
+                <Hamburger setOpen={setOpen} open={open} quantity={quantity} session={session} user={user} favoriteQuantity={favorite.quantity} setTitle={setTitle} handleClick={handleClick} handleLogOut={handleLogOut} />
+        <MainNavigation   setActive={setActive} active={active} test={test} showDropdown={showDropdown}  session={session} user={user} setTitle={setTitle} handleClick={handleClick} handleLogOut={handleLogOut}/>
+
                 <div className={styles.item}>
                     <div className={styles.social}>
                         <div className={styles.socialContainer}>

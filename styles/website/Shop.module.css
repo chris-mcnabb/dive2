@@ -1,9 +1,9 @@
 .container{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    top: -10px;
+
+
+
 
 }
 .header{
@@ -13,8 +13,18 @@
     justify-content: space-around;
     align-items: center;
 }
+.backArrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.terug{
+    cursor: pointer;
+    margin-right: 5px;
+}
 .header>h1{
-    color: #0073ad;
+
     font-size: 38px;
 }
 .img{
@@ -81,6 +91,19 @@
 
     padding: 100px 100px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
 
+}
+@media screen and (max-width: 850px) {
+    .header>h1{
+        font-size: 20px;
+    }
+    .backArrow>h1{
+        font-size: 20px;
+    }
+    .terug{
+        font-size: 20px;
+    }
 }

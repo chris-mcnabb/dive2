@@ -1,76 +1,49 @@
 import {useEffect, useState} from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {useStripe} from '@stripe/react-stripe-js';
-import {Elements} from "@stripe/react-stripe-js";
-import styles from "../styles/CheckoutForm.module.css";
+import styles from "../styles/website/Login.module.css";
+import {getSession} from "next-auth/react";
+import {guestOrder, updateInventory, updateOrder} from "../redux/apiCalls";
+
 const Success = () => {
     const router = useRouter()
+    const dispatch = useDispatch();
+    const guest = useSelector(state=>state.guest)
+    const cart = useSelector(state=>state.cart);
     const {redirect_status} = router.query
-    const success = useSelector(state=>state.cart.processed)
+    const success = useSelector(state=>state.cart.processed === 'succeeded')
     const [message, setMessage] = useState(null);
-    const stripe  = useStripe()
-    useEffect(async() => {
-        if (!stripe) {
-            return;
-        }
 
-        //Grab the client secret from url params
-        const clientSecret = new URLSearchParams(window.location.search).get(
-            "payment_intent_client_secret"
-        );
-
-        if (!clientSecret) {
-            return;
-        }
-        stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-            switch (paymentIntent.status) {
-                case 'succeeded':
-                    setMessage('Payment succeeded!');
-                    break;
-                case 'processing':
-                    setMessage('Your payment is processing.');
-                    break;
-                case 'requires_payment_method':
-                    setMessage('Your payment was not successful, please try again.');
-                    break;
-                default:
-                    setMessage('Something went wrong.');
-                    break;
+    useEffect(() =>{
+           const finalizeOrder = async() => {
+               const session = await getSession()
+              if(session){
+                  await updateInventory(cart)
+                  await updateOrder(dispatch, session, cart.cartId, cart, cart.products)
+              }
+            if(!session){
+                await updateInventory(cart)
+                await guestOrder(dispatch, cart.cartId, cart, cart.products, guest)
             }
-        });
+           }
+           finalizeOrder()
+       },[success])
 
 
 
 
-    }, [stripe]);
-
-
-
-    console.log('--->processed', success)
     return (
 
-        <div style={{height: '100vh'}}>
-            {message}
-            <div className={styles.buttonContainer}>
-                <button
-                    className={styles.button}
-                    disabled={isLoading || !stripe || !elements}
-                    id="submit"
-                >
-          <span id="button-text">
-            {isLoading ? (
-                <div className="spinner" id="spinner">
+        <div className={styles.resetContainer}>
+            <div className={styles.orderConfirm}>
+            <h1 className={styles.title}>Thank You For Your Order!!</h1>
 
-                </div>
-            ) : (
-                'Pay now'
-            )}
-          </span>
-                </button>
-            </div>
+              <h1 className={styles.title}>You Will Receive a Confirmation Email Shortly.</h1>
+          </div>
+
+
+
         </div>
-
     );
 };
 

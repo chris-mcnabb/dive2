@@ -36,7 +36,7 @@ const Navbar = () => {
                     <SearchOutlinedIcon/>
                 </div>
                 <div className={styles.user}>
-                    {session && <h2>Dag {session.firstName}</h2>}
+                    {session && <h2>👋  Dag {session.firstName}</h2>}
                 </div>
                 <div className={styles.items}>
 

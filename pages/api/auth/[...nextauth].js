@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import User from "../../../models/User";
 import Cart from "../../../models/Cart";
 import Favorite from "../../../models/Favorite";
@@ -88,6 +88,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
             async session({user,session, credentials, token,carts}) {
                 session.personal = token.user.personal
                 session.firstName = token.user.firstName
+                session.lastName = token.user.lastName
                  session.isEmployee = token.isEmployee
                 session.isAdmin = token.isAdmin
                 session.user = token.user

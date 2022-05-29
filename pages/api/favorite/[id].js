@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import Favorite from "../../../models/Favorite";
 import Product from "../../../models/Product";
 import Cart from "../../../models/Cart";
@@ -25,8 +25,9 @@ export default async function handler(req, res) {
     }
     if(method === 'PUT'){
         const{quant, productId, deleteId}=req.body
-        console.log(deleteId)
-        if(productId){
+        console.log('id--->',deleteId)
+
+        /*if(productId){
           try{
            const updatedFavorite = await Favorite.findOneAndUpdate(
                id,
@@ -52,7 +53,7 @@ export default async function handler(req, res) {
            }catch(err){
                res.status(500).json(err);
            }
-       }
+       }*/
     }
     if(method === 'DELETE'){
         try{

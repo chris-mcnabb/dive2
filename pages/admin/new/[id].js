@@ -30,7 +30,7 @@ const New = ({category, users, agency}) => {
             console.log(err)
         }
     }
-    //console.log(agency)
+    console.log(id)
     return (
         <div className={styles.container}>
             <div className={styles.newContainer}>

@@ -1,7 +1,12 @@
 import styles from '../../styles/website/ImageModal.module.css';
 import Image from "next/image";
-import React from "react";
+import React, {useState} from "react";
 const ImageModal = ({img, pic,setShowModal}) => {
+    const [index, setIndex] = useState(0)
+    const handlePhoto = (idx) => {
+        setIndex(idx)
+    };
+console.log(img)
     return (
         <div className={styles.container}>
 
@@ -11,11 +16,11 @@ const ImageModal = ({img, pic,setShowModal}) => {
                   X
               </span>
                 </div>
-               <Image src={img} alt='' height={800} width={800} objectFit="contain"/>
+               <Image src={`/img/${pic[index]}`} alt='' height={600} width={600} objectFit="contain"/>
            </div>
             <div>
                 {pic.length > 1 && pic.map((picture, idx)=>(
-                    <Image className={styles.img} value={idx} src={`/img/${picture}`} alt="" height={100} width={100} objectFit="contain" />
+                    <Image className={styles.img} value={idx} src={`/img/${picture}`} alt="" height={100} width={100} objectFit="contain" onClick={()=>handlePhoto(idx)}/>
                 ))}
 
 

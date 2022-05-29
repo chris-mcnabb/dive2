@@ -78,7 +78,7 @@ const  Person = ({user}) => {
                   </div>
                     <div className={styles.lowerContainer}>
                         <h3>Active Since: {activeSince}</h3>
-                        <h3>Dive Number: {user.experience[0].diverNumber}</h3>
+                        <h3>Dive Number: {user.experience[0]?.diverNumber}</h3>
                       <div className={styles.activityContainer}>
                           <h3>Recent Activity</h3>
                           <div className={styles.activities}>

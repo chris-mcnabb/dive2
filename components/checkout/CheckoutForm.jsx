@@ -7,9 +7,13 @@ import {
 import axios from 'axios'
 import styles from "../../styles/CheckoutForm.module.css";
 import {addProcess} from '../../redux/cartSlice';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import useToggle from "../hooks/useToggle";
+import {updateOrder} from "../../redux/apiCalls";
+import {getSession} from "next-auth/react";
 export default function Form({total, paymentIntent}) {
+    const guest = useSelector(state=>state.guest)
+    const cart = useSelector(state=>state.cart);
     const [email, setEmail] = useState('chrismcnabb6691@ggmail.com');
 
     const [message, setMessage] = useState(null);
@@ -20,6 +24,7 @@ export default function Form({total, paymentIntent}) {
     const elements = useElements();
     const dispatch = useDispatch()
     useEffect(async() => {
+
         if (!stripe) {
             return;
         }
@@ -61,7 +66,7 @@ export default function Form({total, paymentIntent}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const session = await getSession()
         if (!stripe || !elements) {
             console.log('not loaded');
             // Stripe.js has not yet loaded.
@@ -72,7 +77,7 @@ export default function Form({total, paymentIntent}) {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: 'http://localhost:3000/checkout',
+                return_url: 'http://localhost:3000/success',
                 receipt_email: email,
                 shipping: {
                     address: { city: 'NY' },
@@ -84,7 +89,9 @@ export default function Form({total, paymentIntent}) {
                     },
                 },
             },
+
         });
+
               if (error.type === "card_error" || error.type === "validation_error") {
                   setMessage(error.message);
               } else {
@@ -124,7 +131,7 @@ console.log(stripeRes)
           </span>
                 </button>
                 </div>
-                {/* Show any error or success messages */}
+                {message}
 
             </form>
             </div>

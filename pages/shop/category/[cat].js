@@ -42,9 +42,12 @@ console.log(categoryList.length)
 
             <div className={styles.wrapper}>
               <div className={styles.back}>
-                  <Link href="/shop">
-                  <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
-                  </Link>
+                  <div className={styles.backArrow}>
+                      <Link href="/shop">
+                          <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
+                      </Link>
+                  </div>
+
                   <h1>{cat}</h1>
               </div>
                 <div className={styles.buttonContainer}>

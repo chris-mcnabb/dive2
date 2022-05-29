@@ -1,5 +1,6 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import Favorite from "../../../models/Favorite";
+import Cart from "../../../models/Cart";
 
 export default async function handler(req, res) {
     const {
@@ -38,17 +39,35 @@ export default async function handler(req, res) {
             res.status(500).json(err);
         }
     }
-    if(method === 'PUT'){
-        const items = req.body
-        console.log(favorite)
-      try{
+    if(method === 'PUT') {
+        const {save, remove} = req.body
+        console.log(save)
+        if (save) {
+            try{
             const updatedFavorite = await Favorite.findOneAndUpdate(
                 {userId: favorite},
-                {$push: {items: {...items}}}
+                {$push: {items: {...save}}}
             )
             res.status(200).json(updatedFavorite)
         }catch(err){
             res.status(500).json(err);
+        }
+        }
+        if (remove) {
+            try {
+                const deleteFavoriteItem = await Favorite.updateOne(
+                    {userId: favorite},
+                    {
+                        $pull: {
+                            items: {_id: remove}
+                        }
+                    },
+                    {safe: true}
+                )
+                res.status(200).json(deleteFavoriteItem)
+            } catch (err) {
+                res.status(500).json(err);
+            }
         }
     }
 }

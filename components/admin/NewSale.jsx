@@ -44,8 +44,8 @@ const NewSale = ({users}) => {
                     {newSale && <div className={styles.userContainer}>
                         <div className={styles.name}>
                           <span className={styles.title}>Naam: </span>
-                            <span style={{marginRight: 5}}>{client?.firstName}</span>
-                            <span>{client?.lastName}</span>
+                            <span style={{marginRight: 5}}>{(client?.firstName+' '+client?.lastName)}</span>
+
                         </div>
 
                         <div className={styles.userName}>

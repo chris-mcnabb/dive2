@@ -36,6 +36,7 @@ const Products = ({products, categories}) => {
                 cost: `€${option.cost.toFixed(2)}`,
                 price: `€${option.price.toFixed(2)}`,
                 inStock: option.inStock,
+                stock: option.stock,
                 new:  option.new
             }])
             setInitialMan((prev)=>[...prev, option.manufacturer])
@@ -87,11 +88,16 @@ setNewManufacturer([...new Set(initialMan)])
             headerName: "inStock",
             width: 70,
             renderCell: (params) => {
-                if(params.row.inStock) {
-                    return <div>Ja</div>
+                if(params.row.stock >0) {
+                    if(params.row.stock <=5){
+                        return <div className={styles.lowStock}>Ja</div>
+                    }else{
+                        return <div className={styles.stock}>Ja</div>
+                    }
+
                 }
-                if(!params.row.inStock){
-                    return <div>Nee</div>
+                if(params.row.stock === 0){
+                    return <div  className={styles.lowStock}>Nee</div>
                 }
             },
 

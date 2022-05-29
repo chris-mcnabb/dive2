@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import  {useState, useMemo} from 'react';
 import styles from "../../styles/admin/NewUser.module.css";
 import Image from "next/image";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";

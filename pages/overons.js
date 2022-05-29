@@ -4,9 +4,11 @@ import FAQ from "../components/website/overons/FAQ";
 import {ArrowBackIosNewOutlined} from "@mui/icons-material";
 import  {useState} from "react";
 import Staff from "../components/website/overons/Staff";
+import Contact from "../components/website/overons/Contact";
+import axios from "axios";
 
 
-const Overons = () => {
+const Overons = ({image}) => {
     const [section, setSection] = useState('')
     const [subGroup, setSubGroup] = useState('faq')
     const handleClick = (data) => {
@@ -36,8 +38,8 @@ const Overons = () => {
                 </button>
             </div>
             {subGroup === 'faq' && <FAQ section={section} handleClick={handleClick}/>}
-            {subGroup === 'staff' && <Staff section={section} handleClick={handleClick}/> }
-            {subGroup === 'overons' && <span>Over Ons</span> }
+            {subGroup === 'staff' && <Contact section={section} image={image} handleClick={handleClick}/> }
+            {subGroup === 'overons' && <Contact section={section} image={image} handleClick={handleClick}/> }
 
         </div>
     );
@@ -45,3 +47,13 @@ const Overons = () => {
 
 export default Overons;
 Overons.layout = "L3";
+
+export const getServerSideProps = async () => {
+    const img = await axios.get(`http://localhost:3000/api/images`);
+
+    return{
+        props: {
+            image: img.data
+        }
+    }
+}

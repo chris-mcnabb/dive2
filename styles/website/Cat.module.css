@@ -1,8 +1,13 @@
 .container{
+   //min-height: calc(90vh - 200px);
+
+    display: flex;
+
+
+}
+.orderContainer{
     width: 100vw;
     display: flex;
-    background-color: rgb(242,245,247);
-
 }
 .sidebar{
     flex: 1;
@@ -11,14 +16,22 @@
 .wrapper{
     flex: 4;
     flex-direction: column;
+    width: 100%;
 }
 .back{
     display: flex;
     justify-content: space-around;
     margin-bottom: 10px;
 }
+.backArrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
 .terug{
     cursor: pointer;
+    margin-right: 5px;
 }
 .buttonContainer{
     display: flex;
@@ -36,14 +49,49 @@
     cursor: pointer;
     color: white;
     background-color: indianred;
-    //background: rgb(0,173,213);
-    //background: linear-gradient(193deg, rgba(0,173,213,1) 30%, rgba(0,101,134,1) 50%, rgba(53,178,235,1) 100%);
+
 
 }
 .cardContainer{
 
     padding: 100px 100px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
+
+}
+@media screen and (max-width: 850px) {
+    .back>h1{
+        font-size: 20px;
+    }
+    .backArrow>h1{
+        font-size: 20px;
+    }
+    .terug{
+        font-size: 20px;
+    }
+    .sub{
+        padding: 10px 5px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+        background-color: indianred;
+
+
+    }
+    .cardContainer{
+
+        padding: 25px 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+
+    }
 
 }

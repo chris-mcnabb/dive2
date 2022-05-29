@@ -10,14 +10,15 @@ import {getSession} from "next-auth/react";
 import {useSelector, useDispatch} from "react-redux";
 import useToggle from "../components/hooks/useToggle";
 import {updateOrder} from "../redux/apiCalls";
+import {useRouter} from "next/router";
 const stripe =  loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 const Checkout = () => {
-
+    const guest = useSelector(state=>state.guest)
     const cart = useSelector(state=>state.cart);
     const [clientSecret, setClientSecret] = useState('');
     const [paymentIntent, setPaymentIntent] = useState('')
     const [success, setSuccess] = useToggle()
-
+    const router = useRouter()
     const dispatch = useDispatch();
     useEffect(() => {
         const newIntent = async() => {
@@ -38,17 +39,16 @@ const Checkout = () => {
         }
         newIntent()
     },[]);
-    useEffect(() =>{
+    /*useEffect(() =>{
         const finalizeOrder = async() => {
             const session = await getSession()
             if(cart.processed === 'succeeded'){
-                console.log('process', cart.processed)
-                await updateOrder(dispatch, session, cart.cartId, cart)
-                //setSuccess()
+                await updateOrder(dispatch, session, cart.cartId, cart, cart.products, guest)
+                 router.push('/success')
             }
         }
         finalizeOrder()
-    },[cart.processed === 'succeeded'])
+    },[cart.processed === 'succeeded'])*/
 
     const appearance = {
         theme: 'flat',
@@ -59,7 +59,7 @@ const Checkout = () => {
         appearance,
 
     };
-console.log('cart', cart)
+console.log('cart', cart.processed=== 'succeeded')
     return (
         <div className={styles.container}>
 
@@ -69,8 +69,9 @@ console.log('cart', cart)
             </Head>
             {!success &&
                 <>
-                <h1>Total: €{(cart.total + cart.shipping.shippingCost).toFixed(2)}</h1>
-            <div className={styles.formContainer}>
+                {cart.total > 0 ? <h1>Total: €{(cart.total + cart.shipping.shippingCost).toFixed(2)}</h1> : <h1>€0.00</h1>}
+
+
 
 
               {clientSecret && (
@@ -79,7 +80,7 @@ console.log('cart', cart)
                     </Elements>
                 )}
 
-            </div>
+
                 </>  }
         </div>
     );

@@ -1,6 +1,6 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import User from "../../../models/User";
-
+import argon2 from "argon2";
 export default async function handler(req, res) {
     const {
         method,
@@ -12,8 +12,12 @@ export default async function handler(req, res) {
     await dbConnect()
 
     if (method === "GET") {
+
         try {
-            const user = await User.findById(id);
+
+               const  user = await User.findById(id);
+
+
             const {password, ...others} = user._doc
 
             res.status(200).json(others)
@@ -22,12 +26,37 @@ export default async function handler(req, res) {
         }
     }
     if (method === "PUT") {
+        const{password, username}=req.body
+        console.log(id)
+        if(password) {
+            const newPassword = await argon2.hash(password)
+            try {
+                 await User.findByIdAndUpdate(
+                    id,
+                    {
+                        'password': newPassword,
+                        new: true
+                    }
+                );
+                res.status(200).json('Reset')
+            } catch (err) {
+                res.status(500).json(err);
+            }
+        }
+        if(username) {
 
-        try {
-            const user = await User.create(req.body);
-            res.status(201).json(user)
-        } catch (err) {
-            res.status(500).json(err);
+            try {
+                await User.findByIdAndUpdate(
+                    id,
+                    {
+                        'personal.username': username,
+                        new: true
+                    }
+                );
+                res.status(200).json('Reset')
+            } catch (err) {
+                res.status(500).json(err);
+            }
         }
     }
     if (method === "DELETE") {

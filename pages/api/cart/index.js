@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import Cart from "../../../models/Cart";
 
 export default async function handler(req, res) {
@@ -40,8 +40,8 @@ export default async function handler(req, res) {
     }
     if(method === 'PUT'){
         const items = req.body
+            console.log(items)
 
-        console.log(cart)
         try{
         const updatedCart = await Cart.findOneAndUpdate(
                 {userId: cart},

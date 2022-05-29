@@ -1,16 +1,19 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import User from "../../../models/User";
+import PendingUser from "../../../models/PendingUser";
 import argon2 from "argon2";
+import {sendConfirmationEmail} from '../../../lib/mailer'
 export default async function handler(req, res) {
     const {
         method,
-        query: {group}
+        query: {group},
     } = req;
 
 
     await dbConnect()
 
     if (method === "GET") {
+
         try {
             let actives;
             if (group) {
@@ -29,6 +32,7 @@ export default async function handler(req, res) {
         }
     }
     if(method==="POST"){
+
         const{
             firstName,
             lastName,
@@ -40,9 +44,12 @@ export default async function handler(req, res) {
             employeeInfo,
             isEmployee,
             userType
-        } =req.body
+        } =req.body;
 
-        const newUser = new User({
+
+
+
+        const newUser = new PendingUser({
             firstName,
             lastName,
             personal,
@@ -57,9 +64,13 @@ export default async function handler(req, res) {
 
         })
         try{
+            const rUser = await User.findOne({'personal.username': personal.username})
+            const pUser = await PendingUser.findOne({'personal.username': personal.username})
 
-            const user = await User.create(newUser);
-            res.status(201).json(user)
+            if (pUser || rUser) { return res.status(422).send('username is already registered!');}
+            const user = await PendingUser.create(newUser);
+            await sendConfirmationEmail({toUser: user.firstName, id: user._id, userRequest: 'register'})
+            res.status(201).json('Please check your email to activate account.')
         }catch(err){
             res.status(500).json(err);
         }

@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import Agency from "../../../models/Agency";
 import clientPromise from '../../../lib/mongodb'
 mongoose = require("mongoose")

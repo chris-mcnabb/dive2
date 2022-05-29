@@ -20,15 +20,26 @@ const Order = ({order}) => {
     const [orderStatus, setOrderStatus] = useState('Order Received')
     const [isChecked, setisChecked] = useState('Order Received')
     console.log(order)
-    useEffect(()=>{
+
+    const allStatus = [
+        {key: 0, name: 'Order Received'},
+        {key: 1, name: 'Ready to Ship'},
+        {key: 2, name: 'Shipped'},
+        {key: 3, name: 'Delivered'},
+        {key: 4, name: 'Cancelled'}
+    ]
+
+    useEffect((allStatus)=>{
+
        const getUser = async () => {
            try{
                const res = await axios.get(`http://localhost:3000/api/users/${order.userId}`);
-               setCustomer(res.data.firstName + ' ' + res.data.lastName)
+
                setPhone(res.data.personal.phone)
                console.log(res.data)
            }catch(err){
            }
+           setCustomer(  order.customer.firstName + ' ' + order.customer.lastName)
            order.items.map((option)=>{
                console.log(option)
                setData( (prev)=>[...prev, {
@@ -39,6 +50,22 @@ const Order = ({order}) => {
                }])
 
            })
+           if(order.status === 0){
+               setisChecked('Order Received')
+           }
+           if(order.status === 1){
+               setisChecked('Ready to Ship')
+           }
+           if(order.status === 2){
+               setisChecked('Shipped')
+           }
+           if(order.status === 3){
+               setisChecked('Delivered')
+           }
+           if(order.status === 4){
+               setisChecked('Cancelled')
+           }
+
 
        }
        getUser()
@@ -70,13 +97,7 @@ const Order = ({order}) => {
 
         console.log(index)
     };
-    const allStatus = [
-        {key: 0, name: 'Order Received'},
-        {key: 1, name: 'Ready to Ship'},
-        {key: 2, name: 'Shipped'},
-        {key: 3, name: 'Delivered'},
-        {key: 4, name: 'Cancelled'}
-    ]
+
     const columns = [
         {
             field: "id",
@@ -136,13 +157,12 @@ const Order = ({order}) => {
             const res = await axios.put("http://localhost:3000/api/orders/"+order._id, {status: update.key});
             console.log(res.data)
             setisChecked(update.name)
+            setOrderStatus(update.name)
         }catch(err){
 
         }
-
-
-
     }
+    console.log(order)
     return (
         <div className={styles.container}>
             <TableHeader  title={order._id}  cat={'order'}/>
@@ -173,7 +193,7 @@ const Order = ({order}) => {
                            </div>
                            <div className={styles.info}>
                                <h3>Phone: </h3>
-                               <span>{phone}</span>
+                               <span>{order.phone}</span>
                            </div>
                            <div className={styles.info}>
                                <h3>Email: </h3>
@@ -204,7 +224,7 @@ const Order = ({order}) => {
                        <div className={styles.productInfoRight}>
                            <div className={styles.info}>
                                <h3>Status: </h3>
-                               <span >{orderStatus}</span>
+                               <span >{isChecked}</span>
                            </div>
                            <div className={styles.info}>
                                <h3 >

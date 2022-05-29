@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import Image from "next/image";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import {AttachMoney} from "@mui/icons-material";
+import UploadImage from "./UploadImage";
 
 
 const ProductInput = ({ id, handleCreate, category }) => {
@@ -18,6 +19,7 @@ const ProductInput = ({ id, handleCreate, category }) => {
     const [sizes, setSizes] = useState([])
     const [codes, setCodes] = useState([])
     const [file, setFile] = useState([])
+    const [img, setImg] = useState([])
     const [catIndex, setCatIndex] = useState('')
 
 
@@ -60,7 +62,7 @@ const ProductInput = ({ id, handleCreate, category }) => {
 
     };
 
-console.log(file)
+console.log(img)
     return (
         <div className={styles.container}>
             <div className={styles.top}>
@@ -71,34 +73,15 @@ console.log(file)
 
                 <div className={styles.bottom}>
                     <div className={styles.left}>
-                        <Image width={100} height={100} objectFit='cover'
-                               className={styles.img}
-                               src={
-
-                                      "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                               }
-                               alt=""
-                        />
-                        <div className={styles.imgInput}>
-
-                            <label htmlFor="file" className={styles.iconContainer}>
-                                Upload Image: <DriveFolderUploadOutlinedIcon className={styles.icon} />
-                            </label>
-                            <input
-                                type="file"
-                                id="file"
-                                onChange={(e) => setFile(prev=> [...prev, e.target.files[0].name])}
-                                style={{ display: "none"}}
-                            />
-
+                        <UploadImage file={file} setFile={setFile} img={img} setImg={setImg}/>
                             <div className={styles.buttonContainer}>
                                 {id && <button className={styles.button} onClick={()=>handleCreate({
-                                    ...inputs, subCategories: subCategories, categories, color: colors, barcode: codes, size: sizes, img: file
+                                    ...inputs, subCategories: subCategories, categories, color: colors, barcode: codes, size: sizes, img: img
                                 })}>CREATE
                                     NEW {id.toUpperCase()}</button>}
                             </div>
 
-                        </div>
+
                         <div className={styles.list}>
                             <ul className={styles.ul}>
                                 {inputs.manufacturer?.length > 0 && <li  className={styles.li}><b>Manufacturer:</b> {inputs.manufacturer}</li>}

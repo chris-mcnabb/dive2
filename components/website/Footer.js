@@ -2,10 +2,11 @@ import styles from "../../styles/website/Footer.module.css"
 const Footer = () => {
 
     return (
-        <>
 
+        <div style={{marginBottom: '100px', height: '100vh'}}>
             <div className={styles.container}>
-                <div className={styles.contactContainer}>
+                <div className={styles.wrapper}>
+                    <div className={styles.contactContainer}>
                     <div className={styles.addressContainer}>
                         <span className={styles.contactInfo}>
                             Teteringsedijk 275
@@ -22,8 +23,13 @@ const Footer = () => {
                     </span>
 
                 </div>
+                <div className={styles.creator}>
+                 <span> powered by DiveMonkey</span>
+                </div>
+                </div>
             </div>
-        </>
+        </div>
+
     );
 };
 

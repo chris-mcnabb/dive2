@@ -2,18 +2,20 @@ import {useState, useRef} from 'react';
 import styles from "../../styles/website/Shop.module.css"
 import Link from "next/link"
 import Image from "next/image"
-import {SearchOutlined} from "@mui/icons-material";
+import {ArrowBackIosNewOutlined, SearchOutlined} from "@mui/icons-material";
 import CategoryCard from "../../components/website/CategoryCard";
 import axios from "axios";
 import Head from "next/head";
 import logo from "../../public/img/headerlogo.svg";
 import {useSession} from "next-auth/react";
+import {useSelector} from "react-redux";
 
 const Shop = ({categories}) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [searchInput, setSearchInput] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
     const test = useRef(null);
+
     const {data: session} = useSession()
     const searchItems = (searchValue) => {
         setShowDropdown(true)
@@ -40,9 +42,12 @@ const Shop = ({categories}) => {
     return (
         <div className={styles.container}>
         <div className={styles.header}>
-            <div className={styles.img}>
-               <Image src={logo} alt="" height={100} width={300} objectFit="contain"/>
-            </div>
+            <div className={styles.backArrow}>
+                <Link href="/shop">
+                    <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
+                </Link>
+                </div>
+
             <h1>Choose a Category:</h1>
 
         </div>
@@ -56,7 +61,7 @@ const Shop = ({categories}) => {
     <div className={styles.cardContainer}>
 
         {categories.map((category)=>(
-            <CategoryCard key={category._id} category={category}/>
+            <CategoryCard key={category._id} fill='fill' index='all' category={category}/>
         ))}
     </div>
 
@@ -66,7 +71,7 @@ const Shop = ({categories}) => {
 
 export default Shop;
 Shop.layout = "L3";
-export const getServerSideProps = async() => {
+export const getStaticProps = async() => {
     const res = await axios.get("http://localhost:3000/api/catmenu");
     return{
         props:{

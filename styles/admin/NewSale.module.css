@@ -1,6 +1,7 @@
 .container{
     flex: 6;
     color: #1980b5;
+
 }
 .wrapper{
     width: 100%;
@@ -46,6 +47,7 @@
 .h1{
     color: #1980b5;
     font-size: 20px;
+
 }
 .left{
     height: 80vh;
@@ -110,7 +112,7 @@
 }
 
 .title{
-    font-weight: 800;
+    font-weight: 500;
     margin-right: 7px;
 }
 .rightBottom{
@@ -124,7 +126,10 @@
     -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
     box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
 }
+.rightBottom>h1{
 
+    font-weight: 300;
+}
 .button{
     display: flex;
     align-items: center;

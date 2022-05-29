@@ -11,7 +11,9 @@ module.exports = withVideos({
             "fourthelement.com",
             "us.aqualung.com",
         'icon-library.com',
-        'images.pexels.com']
+        'images.pexels.com',
+            "firebasestorage.googleapis.com"
+        ]
     },
     i18n: {
         locales: ['en', 'fr', 'nl', 'de'],

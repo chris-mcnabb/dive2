@@ -1,5 +1,5 @@
 .container{
-    height: 100px;
+    height: 200px;
     width: 100vw;
     padding: 0px 50px;
     top: 0;
@@ -8,17 +8,16 @@
     z-index: 999;
 }
 .container2{
-    height: 160px;
-    padding: 0px 50px;
+    max-height: 150px;
+
+    padding: 0 20px 50px;
     top: 0;
     background-color: #1980b5;
-
-
-
     position: sticky;
     z-index: 999;
 }
 .wrapper{
+    min-height: 50%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,15 +27,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     margin:  0 10px;
+}
+.hamburger{
+    display: none;
+
+}
+.menu {
+    display: none;
 }
 .item {
     flex: 1;
     display: flex;
     align-items: center;
-
-
+}
+.userSession{
+    margin: 10px 5px 0;
+}
+.mainImage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.mainImageMobile{
+    display: none;
 }
 .adminItem{
     margin-right: 30px;
@@ -61,12 +75,11 @@
     cursor: pointer;
 }
 
-.item:nth-child(2){
+.item{
     flex: 3;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 
 }
 
@@ -138,6 +151,15 @@
     color: #c8f5ff;
     font-size: 15px;
 }
+.hand {
+    margin-right: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    background-color: transparent;
+    font-size: 15px;
+}
+
 .listItem:last-child{
     position: relative;
 }
@@ -194,68 +216,20 @@
     width: 60%;
     border-bottom: 1px solid white;
 }
-.searchBar{
-    height: 80px;
-    padding: 20px 0;
 
-    width: 100%;
-}
-.searchWrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-}
-.searchContainer{
-    background: white;
-    display: flex;
-    align-items: center;
-    margin-left: 25px;
-    padding: 5px;
-    border-radius: 7px;
-    border: 1px solid lightgray;
-}
-.searchContainer:focus{
-    border: 2px solid darkgray;
-}
+
 .input{
     border: none;
-    height: 30px;
+    height: 20px;
     width: 300px;
+    font-weight: bold;
+    text-align: center;
 }
 .input:focus{
     outline: none;
-}
-.dropdown{
-    margin-left: 25px;
-    margin-top: 10px;
-    top: 100%;
-    position: absolute;
-}
-.searchList{
-    list-style: none;
-    background: rgba(0, 0, 0, 0.5);
-//background: rgba(0, 191, 255, 0.5);
-    padding: 2px 5px;
-}
-.searchItems{
-    display: flex;
-    align-items: center;
-}
-.searchListItem{
-    cursor: pointer;
-    font-weight: bold;
 
 }
-.searchImg{
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-}
+
 .avatar{
     height: 45px;
     width: 45px;
@@ -378,3 +352,72 @@
     font-size: 15px;
     margin-right: 5px;
 }
+@media screen and (max-width: 850px) {
+    .container2 {
+        padding: 0 20px;
+        height: 100px;
+
+
+
+    }
+    .mainImage{
+        display: none;
+    }
+    .mainImageMobile{
+        flex: 1;
+        display: flex;
+        align-items: center;
+
+    }
+    .logo {
+        display: none;
+    }
+    .logo2{
+        cursor: pointer;
+    }
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        width: 25px;
+        height: 20px;
+        cursor: pointer;
+    }
+    .line {
+        width: 100%;
+        height: 3px;
+        background-color: white;
+    }
+    .menu {
+        position: fixed;
+        height: calc(80vh - 100px);
+        width: 50vw;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        //background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(25, 128, 181, 0.7);
+        top: 110px;
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        color: white;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        z-index: 999;
+        transition: all 1s ease;
+
+    }
+    .list{
+        display: none;
+    }
+    .item{
+        display: none;
+    }
+
+
+}
+

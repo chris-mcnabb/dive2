@@ -1,8 +1,9 @@
 import {addFavorite, removeFavorite} from "../../redux/favoriteSlice";
 import styles from "../../styles/website/ProductPage.module.css";
 import {FavoriteBorderOutlined} from "@mui/icons-material";
-import React from "react";
-import {setFavorites} from "../../redux/apiCalls";
+import React, {useEffect} from "react";
+import {editFavorites, setFavorites} from "../../redux/apiCalls";
+import useToggle from "../hooks/useToggle";
 
 
 export const FavoriteButton = ({dispatch, product, quantity, favs, favoriteCart, session}) => {
@@ -25,31 +26,47 @@ export const FavoriteButton = ({dispatch, product, quantity, favs, favoriteCart,
             removeFavorite( {id: product._id, quantity})
         )
 
-        //editFavorites(dispatch, user, access, product)
+       await editFavorites(dispatch, product, session, favs, favoriteCart, {deleteId: product._id})
     };
     return(
         <>
             {favs.filter((favorite)=>favorite._id === product._id ).length === 0 ?
-                <button className={styles.favoriteButton} onClick={handleSave}>
+                <button  className={styles.favoriteButton}  onClick={handleSave}>
                     <span className={styles.favoriteSpan}>Save for Later</span>
-                    <FavoriteBorderOutlined   sx={{color: "red", fontSize: 30}}/>
+                   <div className={styles.big}>
+                       <FavoriteBorderOutlined   sx={{color: "red", fontSize: 30}}/>
+                   </div>
+                    <div className={styles.small}>
+                        <FavoriteBorderOutlined   sx={{color: "red", fontSize: 20}}/>
+                    </div>
                 </button> :
                 <button className={styles.savedButton} onClick={clearFavorite}>
                     <span className={styles.favoriteSpan}>Saved</span>
-                    <FavoriteBorderOutlined   sx={{color: "white", fontSize: 30}}/>
+                   <div className={styles.big}>
+                       <FavoriteBorderOutlined   sx={{color: "white", fontSize: 30}}/>
+                   </div>
+                    <div className={styles.small}>
+                        <FavoriteBorderOutlined   sx={{color: "white", fontSize: 20}}/>
+                    </div>
                 </button>}
         </>
     )
 }
 
 
-export const AddToCart = ({setQuantity, quantity, setTitle, handleClick}) => {
-
+export const AddToCart = ({setQuantity, quantity, setTitle, handleClick, max}) => {
+    const [disabled, setDisabled] = useToggle()
+useEffect(()=>{
+    if(max === 0){
+        setDisabled()
+    }
+},[max])
+console.log(max)
     return(
         <>
             <div className={styles.orderContainer}>
-                <input  onChange={(e)=>setQuantity(e.target.value)} type="number" defaultValue={quantity} min='1' className={styles.quantity}/>
-                <button className={styles.button} onClick={()=> {
+                <input  onChange={(e)=>setQuantity(e.target.value)} type="number" defaultValue={quantity} min='1' max={max} className={styles.quantity}/>
+                <button disabled={disabled} className={styles.button} onClick={()=> {
                     setTitle('Cart'),
                         handleClick('Cart')
                 }}>Add to Cart</button>

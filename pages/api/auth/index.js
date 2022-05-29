@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import User from "../../../models/User";
 const argon2 = require('argon2');
 export default async function handler(req, res) {

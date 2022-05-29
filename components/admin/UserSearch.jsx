@@ -17,7 +17,7 @@ const UserSearch = ({setShowModal, users, setCriteria, criteria, client, setClie
         console.log('this criteria', criteria)
         if(criteria.phone){
             users.map((data)=>{
-                if(data.personal.phone==criteria.phone){
+                if(data.personal.phone===criteria.phone){
                     setClient(data)
                     setSearchScreen()
                 }
@@ -25,13 +25,13 @@ const UserSearch = ({setShowModal, users, setCriteria, criteria, client, setClie
         }
         if(criteria.email){
             users.map((data)=>{
-                if(data.personal.email==criteria.email){
+                if(data.personal.email===criteria.email){
                     setClient(data)
                     setSearchScreen()
                 }
             })
         }
-        //setSearchScreen()
+        setSearchScreen()
     }
 
 console.log(criteria)

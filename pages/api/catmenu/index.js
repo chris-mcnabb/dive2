@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import dbConnect from "../../../lib/mongo";
 import CatMenu from "../../../models/CatMenu";
 import clientPromise from '../../../lib/mongodb'
 mongoose = require("mongoose")
