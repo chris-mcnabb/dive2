@@ -71,7 +71,7 @@ const Shop = ({categories}) => {
 
 export default Shop;
 Shop.layout = "L3";
-export const getStaticProps = async() => {
+export const getServerSideProps = async() => {
     const res = await axios.get("http://localhost:3000/api/catmenu");
     return{
         props:{

@@ -22,7 +22,7 @@ const sucessNotify = () => toast.success("Sucess!",  {
 const errorNotify = () => toast.error("Error");
 
 Home.layout = "L3";
-export default function Home({session, images, products}) {
+export default function Home({ images, products}) {
 
 
     const [sale, setSale] = useState(false)
@@ -61,7 +61,7 @@ export default function Home({session, images, products}) {
    </>
   )
 };
-export const getStaticProps = async (ctx) =>{
+export const getServerSideProps = async () =>{
 
     const res = await axios.get(`http://localhost:3000/api/products`);
     const cat = await axios.get(`http://localhost:3000/api/catmenu`);
@@ -72,7 +72,7 @@ export const getStaticProps = async (ctx) =>{
             products: res.data,
             subCat: cat.data,
             images: img.data,
-            session: await getSession(ctx)
+
         }
     }
 };
