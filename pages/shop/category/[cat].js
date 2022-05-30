@@ -39,7 +39,7 @@ console.log(categoryList.length)
             <div className={styles.wrapper}>
               <div className={styles.back}>
                   <div className={styles.backArrow}>
-                      <Link href="/shop" >
+                      <Link href="/shop" passHref>
                           <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
                       </Link>
                   </div>

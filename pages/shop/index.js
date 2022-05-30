@@ -43,7 +43,7 @@ const Shop = ({categories}) => {
         <div className={styles.container}>
         <div className={styles.header}>
             <div className={styles.backArrow}>
-                <Link href="/shop">
+                <Link href="/shop" passHref>
                     <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
                 </Link>
                 </div>

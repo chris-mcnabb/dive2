@@ -40,7 +40,7 @@ useEffect(()=>{
         setShowCheckout()
     }
 
-},[guest,session, setShowCheckout()])
+},[guest,session, setShowCheckout])
 
     const handleQuantity =  async(e, idx, item) => {
 
