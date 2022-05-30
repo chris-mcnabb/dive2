@@ -63,9 +63,9 @@ export default function Home({ images, products}) {
 };
 export const getServerSideProps = async () =>{
 
-    const res = await axios.get(`http://localhost:3000/api/products`);
-    const cat = await axios.get(`http://localhost:3000/api/catmenu`);
-    const img = await axios.get(`http://localhost:3000/api/images`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/products`);
+    const cat = await axios.get(process.env.VERCEL_URL+`/api/catmenu`);
+    const img = await axios.get(process.env.VERCEL_URL+`/api/images`);
 
     return{
         props:{

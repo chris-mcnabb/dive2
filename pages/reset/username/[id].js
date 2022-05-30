@@ -16,7 +16,7 @@ const ResetPassword = () => {
 
        console.log(inputs)
             try{
-                const res = await axios.put(`http://localhost:3000/api/users/${id}`,
+                const res = await axios.put(process.env.VERCEL_URL+`/api/users/${id}`,
                     {username: inputs}
                 )
                 setReset(res.data)

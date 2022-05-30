@@ -14,7 +14,7 @@ const Learn = ({image}) => {
 export default Learn;
 Learn.layout = "L3";
 export const getServerSideProps = async () => {
-    const img = await axios.get(`http://localhost:3000/api/images`);
+    const img = await axios.get(process.env.VERCEL_URL+`/api/images`);
 
     return{
         props: {

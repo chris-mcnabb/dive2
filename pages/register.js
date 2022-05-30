@@ -1,5 +1,3 @@
-
-
 import styles from '../styles/website/Register.module.css'
 import {CountryDropdown} from "react-country-region-selector";
 import {useState, useMemo} from "react";
@@ -54,7 +52,7 @@ const Register = () => {
     const onSubmit = async(data) => {
         console.log(data)
         try{
-            const res = await axios.post(`http://localhost:3000/api/users`,
+            const res = await axios.post(process.env.VERCEL_URL+`/api/users`,
                 {
                     firstName: data.firstName,
                     lastName: data.lastName,

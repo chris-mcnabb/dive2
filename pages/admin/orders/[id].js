@@ -33,7 +33,7 @@ const Order = ({order}) => {
 
        const getUser = async () => {
            try{
-               const res = await axios.get(`http://localhost:3000/api/users/${order.userId}`);
+               const res = await axios.get(process.env.VERCEL_URL+`/api/users/${order.userId}`);
 
                setPhone(res.data.personal.phone)
                console.log(res.data)
@@ -266,7 +266,7 @@ const Order = ({order}) => {
 Order.layout = "L2";
 export const getServerSideProps = async ({params}) =>{
 
-const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+const res = await axios.get(process.env.VERCEL_URL+`/api/orders/${params.id}`);
 
     return{
         props:{

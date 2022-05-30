@@ -193,7 +193,7 @@ export default Orders;
 Orders.layout = "L2";
 export const getServerSideProps = async() => {
 
-    const res = await axios.get(`http://localhost:3000/api/orders`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/orders`);
 
 
     return{

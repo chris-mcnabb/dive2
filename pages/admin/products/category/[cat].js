@@ -183,9 +183,9 @@ export default Category;
 Category.layout = "L2";
 export const getServerSideProps = async ({params}) =>{
 
-    const res = await axios.get(`http://localhost:3000/api/products?category=${params.cat}`);
-    const cat = await axios.get("http://localhost:3000/api/catmenu");
-    const prod = await axios.get(`http://localhost:3000/api/products`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/products?category=${params.cat}`);
+    const cat = await axios.get(process.env.VERCEL_URL+`/api/catmenu`);
+    const prod = await axios.get(process.env.VERCEL_URL+`/api/products`);
 
     return{
         props:{

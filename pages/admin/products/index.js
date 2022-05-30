@@ -184,8 +184,8 @@ export default Products;
 Products.layout = "L2";
 export const getServerSideProps = async() => {
 
-    const res = await axios.get(`http://localhost:3000/api/products`);
-    const cat = await axios.get("http://localhost:3000/api/catmenu");
+    const res = await axios.get(process.env.VERCEL_URL+`/api/products`);
+    const cat = await axios.get(process.env.VERCEL_URL+`/api/catmenu`);
 
     return{
         props: {

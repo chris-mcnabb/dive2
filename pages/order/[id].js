@@ -64,7 +64,7 @@ const Order = ({order}) => {
     return (
         <div className={styles.container}>
             <Head>
-                
+
             </Head>
 
             <div className={styles.header}>
@@ -142,7 +142,7 @@ const Order = ({order}) => {
 Order.layout = "L3";
 export const getServerSideProps = async ({params}) =>{
 
-    const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/orders/${params.id}`);
 
     return{
         props:{

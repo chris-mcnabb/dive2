@@ -122,7 +122,7 @@ console.log('data', data)
 export default Customers;
 Customers.layout = "L2";
 export const getServerSideProps = async({params}) => {
-    const res = await axios.get(`http://localhost:3000/api/users?group=${params.user}`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/users?group=${params.user}`);
 
     return{
         props: {

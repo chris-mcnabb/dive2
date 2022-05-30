@@ -189,9 +189,9 @@ export default Manufacturer;
 Manufacturer.layout = "L2";
 export const getServerSideProps = async ({params}) =>{
 
-    const res = await axios.get(`http://localhost:3000/api/products?manufacturer=${params.man}`);
-    const cat = await axios.get("http://localhost:3000/api/catmenu");
-    const prod = await axios.get(`http://localhost:3000/api/products`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/products?manufacturer=${params.man}`);
+    const cat = await axios.get(process.env.VERCEL_URL+`/api/catmenu`);
+    const prod = await axios.get(process.env.VERCEL_URL+`/api/products`);
 
     return{
         props:{

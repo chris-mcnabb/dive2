@@ -37,8 +37,8 @@ const Product = ({product, images}) => {
 
     useEffect(async()=>{
      try{
-         const res = await axios.get(`http://localhost:3000/api/cart?cart=${session.id}`)
-         const favorite = await axios.get(`http://localhost:3000/api/favorite?favorite=${session.id}`)
+         const res = await axios.get(process.env.VERCEL_URL+`/api/cart?cart=${session.id}`)
+         const favorite = await axios.get(process.env.VERCEL_URL+`/api/favorite?favorite=${session.id}`)
          setCart(res.data)
          setFavoriteCart(favorite.data)
      }catch(err){
@@ -177,8 +177,8 @@ Product.layout = "L3";
 
 export const getServerSideProps = async ({params}) =>{
 
-    const res = await axios.get(`http://localhost:3000/api/products/${params.params[1]}`);
-    const img = await axios.get(`http://localhost:3000/api/images`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/products/${params.params[1]}`);
+    const img = await axios.get(process.env.VERCEL_URL+`/api/images`);
     return{
         props:{
             product: res.data,

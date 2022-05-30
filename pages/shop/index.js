@@ -72,7 +72,7 @@ const Shop = ({categories}) => {
 export default Shop;
 Shop.layout = "L3";
 export const getServerSideProps = async() => {
-    const res = await axios.get("http://localhost:3000/api/catmenu");
+    const res = await axios.get(process.env.VERCEL_URL+`/api/catmenu`);
     return{
         props:{
             categories: res.data,

@@ -18,7 +18,7 @@ const DropDown = () => {
     useEffect(()=>{
         const dropDownList = async() => {
             try{
-                const res = await axios.get(`http://localhost:3000/api/products`);
+                const res = await axios.get(process.env.VERCEL_URL+`/api/products`);
                 setSearchData(res.data)
 
             }catch(err){

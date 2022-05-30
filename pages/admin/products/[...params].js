@@ -27,7 +27,7 @@ const Product = ({product}) => {
 
         console.log(+inputs.stock + product.stock)
     }
-    console.log(typeof(product.stock))
+
     return (
     <div className={styles.container}>
         <TableHeader  title={product.name}  cat={'product'}/>
@@ -118,7 +118,7 @@ Product.layout = "L2";
 export const getServerSideProps = async ({params}) =>{
     const search = params[1]
 
-    const res = await axios.get(`http://localhost:3000/api/products/${params.params[1]}`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/products/${params.params[1]}`);
     return{
         props:{
             product: res.data,

@@ -23,7 +23,7 @@ const New = ({category, users, agency}) => {
     const handleCreate =  async (data) => {
        console.log(data)
         try{
-                const res = await axios.post(`http://localhost:3000/api/${id+'s'}`, data);
+                const res = await axios.post(process.env.VERCEL_URL+`/api/${id+'s'}`, data);
                 console.log(res)
                     res.statusText && setSuccess(true)
         }catch(err){
@@ -54,9 +54,9 @@ New.layout = "L2";
 
     export const getServerSideProps = async() => {
 
-            const cat = await axios.get("http://localhost:3000/api/catmenu");
-            const user = await axios.get("http://localhost:3000/api/users");
-            const cert = await axios.get("http://localhost:3000/api/agency");
+            const cat = await axios.get(process.env.VERCEL_URL+`/api/catmenu`);
+            const user = await axios.get(process.env.VERCEL_URL+`/api/users"`);
+            const cert = await axios.get(process.env.VERCEL_URL+`/api/agency`);
             return{
                 props:{
                     category: cat.data,

@@ -318,7 +318,7 @@ export default Person;
 Person.layout = "L2";
 export const getServerSideProps = async ({params}) =>{
     let id= params.params[1]
-    const res = await axios.get(`http://localhost:3000/api/users/${id}`);
+    const res = await axios.get(process.env.VERCEL_URL+`/api/users/${id}`);
     return{
         props:{
             user: res.data,
