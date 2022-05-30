@@ -60,7 +60,7 @@ useEffect(()=>{
     if(max === 0){
         setDisabled()
     }
-},[max])
+},[max, setDisabled()])
 console.log(max)
     return(
         <>

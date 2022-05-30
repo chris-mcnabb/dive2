@@ -38,7 +38,7 @@ const Checkout = () => {
             }
         }
         newIntent()
-    },[]);
+    },[cart]);
     /*useEffect(() =>{
         const finalizeOrder = async() => {
             const session = await getSession()

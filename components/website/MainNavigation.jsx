@@ -12,29 +12,29 @@ const MainNavigation = ({setActive, active, session, user, setTitle, handleClick
         <div className={styles.item}>
             <div className={styles.userSession}>
                 {(user?.isEmployee || user?.isAdmin) &&
-                    <Link href="/admin" >
+                    <Link href="/admin" passHref >
                         <span className={styles.adminItem}>Admin</span>
                     </Link>
                 }
                 {session &&  <><span className={styles.hand}>👋</span> <span  className={styles.listItem}>Dag {session.firstName}</span></> }
             </div>
             <ul className={styles.list}>
-                <Link href="/" >
+                <Link href="/" passHref>
                     <li className={styles.listItem}>Home</li>
                 </Link>
-                <Link href="/learn" >
+                <Link href="/learn" passHref>
                     <li className={styles.listItem}>Learn to Dive </li>
                 </Link>
-                <Link href="/shop" >
+                <Link href="/shop" passHref>
                     <li className={styles.listItem}>Shop</li>
                 </Link>
-                <Link href="/overons" >
+                <Link href="/overons" passHref>
                     <li className={styles.listItem}>Over Ons</li>
                 </Link>
-                <Link href="/rental" >
+                <Link href="/rental" passHref>
                     <li className={styles.listItem}>Rentals</li>
                 </Link>
-                <Link href="/service" >
+                <Link href="/service" passHref>
                     <li className={styles.listItem}>Service</li>
                 </Link>
 

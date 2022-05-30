@@ -53,7 +53,7 @@ const CartSummary = ({ setShowModal, product, img, quantity, size, color}) => {
 
 
                 </div>
-                <Link href='/shop'>
+                <Link href='/shop' passHref>
                 <span className={styles.backButton}>
                     <ArrowBackIos fontSize='x-small'/>
                     CONTINUE SHOPPING

@@ -15,7 +15,7 @@ const Service = ({image}) => {
             <div className={styles.header}>
                 <div className={styles.img}>
 
-                        <Link href="/">
+                        <Link href="/" passHref>
                             <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
                         </Link>
 

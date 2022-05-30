@@ -23,7 +23,7 @@ const Favorites = ({session}) => {
 
             <div className={styles.wrapper}>
                 <div className={styles.back}>
-                    <Link href="/shop">
+                    <Link href="/shop" passHref>
                         <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
                     </Link>
                     <h1>Favorites</h1>

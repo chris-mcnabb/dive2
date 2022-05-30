@@ -27,7 +27,7 @@ const Success = () => {
             }
            }
            finalizeOrder()
-       },[success])
+       },[success, cart, guest, dispatch])
 
 
 

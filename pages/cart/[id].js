@@ -40,7 +40,7 @@ useEffect(()=>{
         setShowCheckout()
     }
 
-},[guest, session])
+},[guest,session, setShowCheckout()])
 
     const handleQuantity =  async(e, idx, item) => {
 
@@ -232,7 +232,7 @@ console.log(cart)
                         {shipping.shippingCost !==undefined && <h2>€{(cart.total + shipping.shippingCost).toFixed(2)}</h2>}
                     </div>
                     {(complete) && <div className={styles.buttonContainer}>
-                        <Link href='/checkout'>
+                        <Link href='/checkout' passHref>
                             <button
                                 className={styles.button}>
                                 COMPLETE ORDER

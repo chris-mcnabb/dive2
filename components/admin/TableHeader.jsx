@@ -9,7 +9,7 @@ const TableHeader = ({title, cat}) => {
             {title && <div className={styles.datatableTitle}>
                 {cat === 'order' && <>Order Number:  </>}
                 {title[0].toUpperCase() + title.substring(1)}
-                {cat !== 'order' && cat !== 'orders' && <Link href={`/admin/new/${cat}`}>
+                {cat !== 'order' && cat !== 'orders' && <Link href={`/admin/new/${cat}`} passHref>
                     <span className={styles.link}>Add New</span>
                 </Link>}
             </div>}

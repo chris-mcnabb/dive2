@@ -148,7 +148,7 @@ const Orders = ({orders}) => {
             renderCell: (params) => {
                 return (
                     <div className={styles.cellAction}>
-                        <Link href={`/admin/orders/${params.row.id}`} style={{textDecoration: "none"}}>
+                        <Link href={`/admin/orders/${params.row.id}`} style={{textDecoration: "none"}} passHref>
                             <div className={styles.viewButton}>  <Visibility className={styles.widgetSmIcon} />Display</div>
                         </Link>
 

@@ -46,7 +46,7 @@ const Hamburger = ({setOpen, quantity, session, user, setTitle, handleClick, han
                       Cart: {quantity}
                 </li>
                 {(user?.isEmployee || user?.isAdmin) &&
-                    <Link href="/admin" >
+                    <Link href="/admin" passHref>
                         <li className={styles.menuItem}>Admin</li>
                     </Link>
                 }

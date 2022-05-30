@@ -55,7 +55,7 @@ const Navbar = () => {
                                    <hr/>
                                </div>
                                <div className={styles.popUpOptions}>
-                                   <Link href={`/admin/users/employee/${session?.id}`}>
+                                   <Link href={`/admin/users/employee/${session?.id}`} passHref>
 
                                     <span>
                                     <Profile/>

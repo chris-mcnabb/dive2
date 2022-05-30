@@ -85,7 +85,7 @@ console.log(criteria)
                         <div className={styles.selection}>
 
                             <h2 className={styles.h2}>No user found</h2>
-                            <Link href='/admin/new/user'>
+                            <Link href='/admin/new/user' passHref>
                                 <button className={styles.searchButton} >Create Customer</button>
                             </Link>
 

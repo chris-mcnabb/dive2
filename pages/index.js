@@ -34,7 +34,7 @@ export default function Home({ images, products}) {
            await retrieveProducts(dispatch, products)
        }
        setProducts()
-    },[products])
+    },)
 
   return (
    <>
@@ -66,7 +66,7 @@ export default function Home({ images, products}) {
    </>
   )
 };
-export const getStaticProps = async () =>{
+export const getServerSideProps = async () =>{
 
     const res = await axios.get(process.env.VERCEL_URL+`/api/products`);
     const cat = await axios.get(process.env.VERCEL_URL+`/api/catmenu`);

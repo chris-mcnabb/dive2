@@ -31,7 +31,7 @@ const Customers = ({customers}) => {
           })
 
 
-  },[user])
+  },[user,customers])
     const columns = [
 
         {field: "avatar", headerName: "Avatar", width: 70,
@@ -81,7 +81,7 @@ const Customers = ({customers}) => {
             renderCell: (params) => {
                 return (
                     <div className={styles.cellAction}>
-                        <Link href={`/admin/users/${user}/${params.row.id}`} style={{textDecoration: "none"}}>
+                        <Link href={`/admin/users/${user}/${params.row.id}`} style={{textDecoration: "none"}} passHref>
                             <div className={styles.viewButton}>  <Visibility className={styles.widgetSmIcon} />Display</div>
                         </Link>
 

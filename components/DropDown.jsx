@@ -70,7 +70,7 @@ const DropDown = () => {
                     <div className={styles.dropdown}>
                         {filteredResults.map((items, idx) => (
                             <div key={idx} className={styles.searchList}>
-                                <Link style={{textDecoration: "none", color: "black"}} href={`/shop/${items.categories[0]}/${items._id}`}>
+                                <Link style={{textDecoration: "none", color: "black"}} href={`/shop/${items.categories[0]}/${items._id}`} passHref>
                                     <div className={styles.searchItems}>
                                         <Image className={styles.searchImg} src={mask} alt="" height={30} width={30}/>
                                         <option className={styles.searchListItem} onClick={()=>handleSearch(items)}>

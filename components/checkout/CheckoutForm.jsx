@@ -60,7 +60,7 @@ export default function Form({total, paymentIntent}) {
 
 
 
-    }, [stripe]);
+    }, [stripe, dipatch]);
 
 
 

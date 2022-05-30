@@ -21,7 +21,7 @@ const Overons = ({image}) => {
     return (
         <div className={styles.container}>
             <div className={styles.back}>
-                <Link href="/">
+                <Link href="/" passHref>
                     <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
                 </Link>
                 <h1>Overons</h1>
