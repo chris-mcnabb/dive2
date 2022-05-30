@@ -1,16 +1,17 @@
 import styles from '../../styles/admin/AdminNavbar2.module.css'
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
-import {ExitToApp, Settings} from "@material-ui/icons";
+
 import React, {useState} from "react";
 import {useRouter} from "next/router";
 import Modal from "../Modal";
-import Add from "./Add";
+
 import {useSession, signOut} from "next-auth/react";
-import {AccountCircleOutlined} from "@mui/icons-material";
+
 import Link from "next/link";
 import useToggle from "../hooks/useToggle";
-
+import Search from './Search'
+import Profile from "./Profile";
+import Exit from './Exit'
 const Navbar = () => {
     const [showModal, setShowModal] = useToggle()
     const [active, setActive] = useToggle()
@@ -28,7 +29,7 @@ const Navbar = () => {
             <div className={styles.wrapper}>
                 <div className={styles.search}>
                     <input className={styles.input} type="text" placeholder='Search...'/>
-                    <SearchOutlinedIcon/>
+                    <Search height={20} width={20}/>
                 </div>
                 <div className={styles.user}>
                     {session && <h2>👋  Dag {session.firstName}</h2>}
@@ -55,14 +56,19 @@ const Navbar = () => {
                                </div>
                                <div className={styles.popUpOptions}>
                                    <Link href={`/admin/users/employee/${session?.id}`}>
+
                                     <span>
-                                    <AccountCircleOutlined   className={styles.popUpIcon}/>
+                                    <Profile/>
+                                 <span className={styles.profile}>
                                      Profile
+                                 </span>
                                 </span>
                                    </Link>
                                    <span  onClick={()=>signOut()}>
-                                       <ExitToApp   className={styles.popUpIcon}/>
-                                    Logout
+                                       <Exit />
+                                   <span  className={styles.profile}>
+                                       Logout
+                                   </span>
                                 </span>
 
                                </div>

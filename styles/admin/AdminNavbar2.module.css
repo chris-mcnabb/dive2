@@ -145,7 +145,10 @@
 }
 .popUpIcon{
     font-size: 15px;
-    margin-right: 5px;
+
+}
+.profile{
+    margin-left: 5px;
 }
 .counter{
     width: 15px;
