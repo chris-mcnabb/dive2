@@ -15,7 +15,7 @@ const VendorLogos = ({logos}) => {
                    image.vendorLogo &&
                    <div className={styles.scrollingImage} key={image._id}>
 
-                       <a href={image.link} target="_blank" rel="noopener noreferrer">
+                       <a href={image.link} target="_blank"  as='vendor' crossOrigin="anonymous">
                        <Image src={image.vendorLogo} alt='' height={80} width={100} priority={true} objectFit='contain'/>
                        </a>
 
@@ -28,7 +28,7 @@ const VendorLogos = ({logos}) => {
                    image.vendorLogo &&
                    <div className={styles.mobileScrollingImage} key={image._id}>
 
-                       <a href={image.link} target="_blank" rel="noopener noreferrer">
+                       <a href={image.link} target="_blank"  as='vendor' crossOrigin="anonymous">
                        <Image src={image.vendorLogo} alt='' height={50} width={50} priority={true} objectFit='contain'/>
                        </a>
 

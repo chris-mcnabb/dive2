@@ -22,7 +22,7 @@ const Slider = ({pics}) => {
         <div className={styles.container}>
 
                <div className={styles.intro}>
-                   <Link href='/shop'>
+                   <Link href='/shop' as='shop'  crossorigin="anonymous">
                        <button className={styles.button}>SHOP NOW</button>
                    </Link>
                </div>
