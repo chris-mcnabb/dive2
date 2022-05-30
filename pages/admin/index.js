@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from "../../styles/admin/Admin.module.css"
-import AdminNavbar from "../../components/admin/AdminNavbar";
-import Sidebar from "../../components/admin/Sidebar";
+
 import FeaturedInfo from "../../components/admin/FeaturedInfo";
 import { useSession, getSession} from "next-auth/react"
 import {getToken} from "next-auth/jwt";

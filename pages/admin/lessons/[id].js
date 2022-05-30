@@ -1,5 +1,5 @@
 import React from 'react';
-import Customer from "../users/[...params]";
+
 import styles from "../../../styles/admin/Lessons.module.css";
 
 const Lesson = () => {
