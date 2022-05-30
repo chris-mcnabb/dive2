@@ -1,12 +1,26 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import styles from "../../styles/admin/UserSearch.module.css"
 import {AvTimerOutlined, PersonOutline, SchoolOutlined, Store, TrendingUp, WarningRounded} from "@mui/icons-material";
 import Link from 'next/link'
 import {useRouter} from "next/router";
 import useToggle from "../hooks/useToggle";
-const UserSearch = ({setShowModal, users, setCriteria, criteria, client, setClient,  setNewSale}) => {
+import axios from "axios";
+const UserSearch = ({setShowModal, search, setCriteria, criteria, client, setClient,  setNewSale}) => {
     const [searchScreen, setSearchScreen] = useToggle()
+    const [allUsers, setUsers] = useState('')
+    useEffect(()=>{
 
+        const getUsers = async() => {
+            try{
+                const res = await axios.get(process.env.VERCEL_URL+`/api/users"`);
+                setUsers(res.data)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        getUsers()
+    },[search])
+    console.log(allUsers)
     const router = useRouter()
     const handleClick = () => {
         setShowModal()
@@ -16,7 +30,7 @@ const UserSearch = ({setShowModal, users, setCriteria, criteria, client, setClie
         e.preventDefault()
         console.log('this criteria', criteria)
         if(criteria.phone){
-            users.map((data)=>{
+            allUsers.map((data)=>{
                 if(data.personal.phone===criteria.phone){
                     setClient(data)
                     setSearchScreen()
@@ -24,7 +38,7 @@ const UserSearch = ({setShowModal, users, setCriteria, criteria, client, setClie
             })
         }
         if(criteria.email){
-            users.map((data)=>{
+            allUsers.map((data)=>{
                 if(data.personal.email===criteria.email){
                     setClient(data)
                     setSearchScreen()

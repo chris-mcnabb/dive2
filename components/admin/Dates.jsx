@@ -7,8 +7,8 @@ const Dates = () => {
     return(
         <div className={styles.container}>
             <Calendar
-                fullWidth
-                fullHeight
+                fullwidth
+                fullheight='true'
 
                 size='xl'
                 styles={{

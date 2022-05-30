@@ -31,9 +31,10 @@ const Faq = ({section, handleClick}) => {
 
                         Aan het einde van de cursus, doe je een langere quiz die ervoor zorgt dat je alle
                         belangrijke concepten en ideeën laag houdt. Jij en je RnG DUIK Instructeur zullen alles
-                        bekijken wat je niet helemaal begrijpt tot het duidelijk is.
+                        bekijken wat je niet helemaal begrijpt tot het duidelijk is.<br/>
 
                         Selecteer de kennisontwikkelingsoptie die u verkiest:
+                        </p>
                             <ul>
                                 <li>
                                     Begin nu en leer online duiken met RnG DIVING via PADI eLearning in je eigen tempo - altijd
@@ -48,7 +49,7 @@ const Faq = ({section, handleClick}) => {
                                     cd-rom) gekocht via RnG DIVING.
                                 </li>
                             </ul>
-                    </p>
+
                     <span>
                          2. <b>Confined Water Dives (zwembadlessen) - Duikvaardigheden Training.</b>
                     </span>
@@ -108,6 +109,7 @@ const Faq = ({section, handleClick}) => {
                         Vergeleken met andere populaire avontuurlijke sporten en buitenactiviteiten, is het leren van duiken niet duur.
 
                         U kunt bijvoorbeeld verwachten ongeveer hetzelfde te betalen als voor:
+                    </p>
                         <ul>
                             <li>
                                 een hele dag surflessen
@@ -131,6 +133,7 @@ const Faq = ({section, handleClick}) => {
                                 een geweldige avond uit in de pub!
                             </li>
                         </ul>
+                    <p>
                         Leren duiken is een grote waarde als je bedenkt dat je leert duiken onder begeleiding en aandacht van een goed opgeleide, ervaren professional - je RnG DIVING PADI duikinstructeur. Vanaf de eerste dag begint het duiken met het transformeren van je leven met nieuwe ervaringen die je deelt met vrienden. En je kunt het bijna overal doen waar water is. Begin met online leren met RnG DIVING en bereid je voor op je eerste adem onder water!
 
                         RnG DIVING is er trots op om de PADI Open Water Course vanaf € 439,00 per persoon te kunnen aanbieden.
@@ -149,17 +152,21 @@ const Faq = ({section, handleClick}) => {
                         Het kiezen en gebruiken van je duikuitrusting is onderdeel van het plezier van duiken.
                         RnG DIVING helpt je de juiste versnelling te vinden. Elk stuk duikuitrusting heeft een
                         andere functie, zodat het zich collectief aanpast aan de onderwaterwereld.
-
                         Als je begint te leren duiken, moet je het tenminste willen:
+            </p>
+
+
                         <ul>
                             <li>duikmasker</li>
                             <li>snorkel</li>
                             <li>laarzen</li>
                             <li>duikvinnen</li>
                         </ul>
+                    <p>
                         Deze hebben een persoonlijke pasvorm en RnG DIVING helpt u bij het kiezen van degene
                         die de pasvorm en functies hebben die het best bij u passen. Inbegrepen in de kosten
                         van uw PADI Open Water Diver-cursus, biedt RnG DIVING een:
+                    </p>
                         <ul>
                             <li>duikregelaar</li>
                             <li>duiken BC</li>
@@ -168,22 +175,26 @@ const Faq = ({section, handleClick}) => {
                             <li>duikpak</li>
                             <li>gewichtsysteem en gewichten</li>
                         </ul>
+                    <p>
                         Controleer met RnG DIVING om de maatverdeling voor uw cursuspakket te bevestigen.
                         Het wordt aanbevolen dat u in uw eigen duikuitrusting investeert wanneer u aan uw
                         cursus begint, omdat:
+                    </p>
                         <ul>
                             <li>je bent meer comfortabel met het gebruik van duikuitrusting die voor jou is uitgerust</li>
                             <li>je bent meer comfortabel om te leren duiken met behulp van de uitrusting die je hebt gekozen</li>
                             <li>duikers die hun eigen duikuitrusting bezitten, vinden het handiger om te gaan duiken</li>
                             <li>het hebben van je eigen duikuitrusting maakt deel uit van het plezier van duiken</li>
                         </ul>
+                    <p>
                         Het soort uitrusting dat je nodig hebt, hangt af van de omstandigheden waarin je duikt. Je wilt misschien:
+                    </p>
                         <ul>
                             <li>tropische duikuitrusting</li>
                             <li>gematigde duikuitrusting</li>
                             <li>koud water duikuitrusting</li>
                         </ul>
-                    </p>
+
                 </div>
             </div>
             <div className={styles.infoContainer}>
@@ -216,12 +227,14 @@ const Faq = ({section, handleClick}) => {
                 <div className={section === '6' ? styles.infoActive : styles.info}>
                     <p>
                         Als je zin hebt in spanning en avontuur, is de kans groot dat je een
-                        fervent PADI-duiker wordt. U moet ook rekening houden met deze vereisten:
-
+                        fervent PADI-duiker wordt. U moet ook rekening houden met deze vereisten:<br/>
                         Minimum leeftijd:
+                    </p>
+
                         <ul>
                             <li>12 jaar oud</li>
                         </ul>
+                    <p>
                         Studenten jonger dan 15 jaar die de cursus met succes voltooien, komen in
                         aanmerking voor de PADI Junior Open Water Diver-certificering, die ze kunnen
                         upgraden naar PADI Open Water Diver-certificering na het bereiken van 15. Je moet
@@ -256,6 +269,7 @@ const Faq = ({section, handleClick}) => {
                         <b>Leermateriaal</b>: Tenzij je kiest voor PADI eLearning, moet je het volgende trainingsmateriaal
                         gebruiken en gebruiken tijdens de PADI Open Water Diver-cursus en voor je beoordeling en referentie
                         na de cursus:
+                    </p>
                         <ul>
                             <li>De PADI Open Water Diver-handleiding</li>
                             <li>PADI Open Water Diver Video op DVD of de PADI Open Water Diver Multimedia (combineert
@@ -264,7 +278,7 @@ const Faq = ({section, handleClick}) => {
                         </ul>
 
 
-                    </p>
+
                 </div>
             </div>
             <div className={styles.infoContainer}>
@@ -279,13 +293,14 @@ const Faq = ({section, handleClick}) => {
                         Je kunt praktisch overal duiken, van water - van een zwembad naar de oceaan en alle punten
                         daartussenin, inclusief steengroeven, meren, rivieren en bronnen. Waar u kunt duiken, wordt
                         bepaald door uw:
+                    </p>
                         <ul>
                             <li>ervaring</li>
                             <li>niveau site</li>
                             <li>toegankelijkheid</li>
                             <li>voorwaarden belangen</li>
                         </ul>
-                    </p>
+
                     <p>
                         Als je bijvoorbeeld net je PADI Open Water Diver-cursus hebt afgerond, duik je waarschijnlijk
                         niet onder het Antarctische ijs tijdens je volgende duik. Maar beperk je denken niet tot het

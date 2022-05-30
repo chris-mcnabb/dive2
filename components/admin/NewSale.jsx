@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Modal from "../Modal";
 import useToggle from "../hooks/useToggle";
-const NewSale = ({users}) => {
+const NewSale = () => {
     const [showModal, setShowModal] = useToggle()
     const [criteria, setCriteria] = useState({})
     const [client, setClient] = useState('')
@@ -12,7 +12,7 @@ const NewSale = ({users}) => {
   console.log('from', criteria)
     return (
         <>
-            <Modal newSale={newSale} setNewSale={setNewSale} showModal={showModal} setShowModal={setShowModal} title={'FindUser'} users={users} client={client} setClient={setClient} criteria={criteria} setCriteria={setCriteria}/>
+            <Modal newSale={newSale} setNewSale={setNewSale} showModal={showModal} setShowModal={setShowModal} title={'FindUser'} search={'search'} client={client} setClient={setClient} criteria={criteria} setCriteria={setCriteria}/>
 
         <div className={styles.container}>
             <div className={styles.top}>

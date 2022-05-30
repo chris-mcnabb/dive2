@@ -4,7 +4,12 @@ import {AvTimerOutlined, PersonOutline, SchoolOutlined, Store, TrendingUp, Warni
 import Link from 'next/link'
 import {useRouter} from "next/router";
 
-const NieuwModal = ({handleClick, setShowModal}) => {
+const NieuwModal = ({setShowModal}) => {
+    const router = useRouter()
+    const handleClick = (value) => {
+        router.push(`/admin/new/${value}`)
+        setShowModal()
+    }
     return (
         <div className={styles.wrapper}>
               <span onClick={(()=>setShowModal())} className={styles.close}>

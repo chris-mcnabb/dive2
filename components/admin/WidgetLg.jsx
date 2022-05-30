@@ -22,7 +22,7 @@ export default function WidgetLg() {
         <div className={styles.container}>
             <h3 className={styles.widgetLgTitle}>Latest transactions</h3>
             <table className={styles.widgetLgTable}>
-
+                <tbody>
                 <tr className={styles.widgetLgTr}>
                     <th className={styles.widgetLgTh}>Customer</th>
                     <th className={styles.widgetLgTh}>Date</th>
@@ -76,7 +76,7 @@ export default function WidgetLg() {
                     </td>
                 </tr>
 
-
+                </tbody>
 
             </table>
         </div>

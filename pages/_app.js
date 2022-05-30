@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import MainLayout from "../components/layouts/MainLayout";
+
 import AdminLayout from "../components/layouts/AdminLayout";
 import OtherLayout from "../components/layouts/OtherLayout"
 import { SessionProvider } from "next-auth/react"
@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 
 const layouts = {
-    L1: MainLayout,
+
     L2: AdminLayout,
     L3: OtherLayout
 };

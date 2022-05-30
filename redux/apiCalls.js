@@ -18,7 +18,7 @@ console.log(session)
      }else if(cart.products.length>0){
 
          try{
-             const res = await axios.post(process.env.VERCEL_URL+`/api/cart`,
+             const res = await axios.post(`/api/cart`,
 
                  {
                      userId: session.id,
@@ -40,8 +40,8 @@ console.log(session)
     }
 
       /*try{
-          //const cart = await axios.get(process.env.VERCEL_URL+`/api/cart/${session.cart[0]._id}`)
-         //const favorites = await axios.get(process.env.VERCEL_URL+`/api/favorite/${session.favorites[0]._id}`)
+          //const cart = await axios.get(`/api/cart/${session.cart[0]._id}`)
+         //const favorites = await axios.get(`/api/favorite/${session.favorites[0]._id}`)
         console.log('cart', cart)
         dispatch(
             cartStart(session.cart[0]),
@@ -63,7 +63,7 @@ export const setFavorites = async (dispatch, items, session, favs, favoriteCart)
     if(session && favoriteCart.length === 0){
         console.log('first')
         try{
-            const res = await axios.post(process.env.VERCEL_URL+`/api/favorite`,
+            const res = await axios.post(`/api/favorite`,
                 {
                     userId: session.id,
                     items: {...items}
@@ -79,7 +79,7 @@ export const setFavorites = async (dispatch, items, session, favs, favoriteCart)
     if(session && favoriteCart.length > 0){
         console.log(items)
        try {
-            const res = await axios.put(process.env.VERCEL_URL+`/api/favorite?favorite=${session.id}`,
+            const res = await axios.put(`/api/favorite?favorite=${session.id}`,
                 {save: items},
             )
             console.log('res at api', res.data)
@@ -97,7 +97,7 @@ export const setFavorites = async (dispatch, items, session, favs, favoriteCart)
 export const editFavorites = async (dispatch, items, session, favs, favoriteCart, deleteId) => {
     console.log(session)
    try{
-       const res = await axios.put(process.env.VERCEL_URL+`/api/favorite?favorite=${session.id}`,
+       const res = await axios.put(`/api/favorite?favorite=${session.id}`,
            {remove: items._id},
             )
     }catch(err){
@@ -116,7 +116,7 @@ export const newCart = async (dispatch, items, session, cart) => {
     }
     if(session && cart.length === 0) {
         try{
-            const res = await axios.post(process.env.VERCEL_URL+`/api/cart`,
+            const res = await axios.post(`/api/cart`,
                 {
                     userId: session.id,
                     items
@@ -132,7 +132,7 @@ export const newCart = async (dispatch, items, session, cart) => {
     }
   if(session && cart.length > 0){
         try {
-            const res = await axios.put(process.env.VERCEL_URL+`/api/cart?cart=${session.id}`,
+            const res = await axios.put(`/api/cart?cart=${session.id}`,
                  items,
             )
             dispatch(
@@ -149,7 +149,7 @@ export const newCart = async (dispatch, items, session, cart) => {
 export const updateCartItem = async (dispatch, quant, id, productId, idx, total, session) => {
    if(session){
        try{
-           const res = await axios.put(process.env.VERCEL_URL+`/api/cart/${id}`,
+           const res = await axios.put(`/api/cart/${id}`,
                {quant, id,  productId}
            )
            dispatch(
@@ -172,7 +172,7 @@ export const deleteCartItem = async (dispatch, id, deleteId, idx, amount, sessio
 
     if(session){
         try{
-            const res = await axios.put(process.env.VERCEL_URL+`/api/cart/${id}`,
+            const res = await axios.put(`/api/cart/${id}`,
                 {deleteId}
             );
             dispatch(
@@ -193,7 +193,7 @@ export const deleteCart = async (dispatch, id, cart, session) => {
     console.log(id)
   if(session){
       try{
-          const res = await axios.delete(process.env.VERCEL_URL+`/api/cart/${id}`
+          const res = await axios.delete(`/api/cart/${id}`
 
           );
           dispatch(clearCart({...cart.products}))
@@ -216,7 +216,7 @@ export const updateOrder = async (dispatch, session, id, cart, items) => {
 console.log('api--->', session)
 if(session){
     try{
-        const res = await axios.post(process.env.VERCEL_URL+'/api/orders',
+        const res = await axios.post('/api/orders',
             {
                 userId: session.id,
                 customer: {firstName: session.firstName, lastName: session.lastName},
@@ -228,7 +228,7 @@ if(session){
                 shippingMethod: cart.shipping
             });
         console.log(items)
-        const remove = await axios.delete(process.env.VERCEL_URL+`/api/cart/${id}`)
+        const remove = await axios.delete(`/api/cart/${id}`)
 
 
         dispatch(clearCart({...cart.products}))
@@ -242,7 +242,7 @@ if(session){
 }
 export const guestOrder = async(dispatch, id, cart, items, guest) => {
     try{
-        const res = await axios.post(process.env.VERCEL_URL+'/api/orders',
+        const res = await axios.post('/api/orders',
             {
                 userId: cart.cartId + new Date().getTime(),
                 customer: {firstName: guest.shipping.firstName, lastName: guest.shipping.lastName},
@@ -270,7 +270,7 @@ export const updateInventory = async(cart) => {
 
     cart.products.map(async(item)=>{
             try{
-                const inventory = await axios.put(process.env.VERCEL_URL+`/api/products/inventory/${item.productId}`,
+                const inventory = await axios.put(`/api/products/inventory/${item.productId}`,
                     {quantity: item.quantity}
                     )
                 console.log(inventory.data)

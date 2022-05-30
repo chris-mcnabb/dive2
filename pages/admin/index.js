@@ -2,17 +2,17 @@ import React, {useEffect, useState} from 'react';
 import styles from "../../styles/admin/Admin.module.css"
 
 import FeaturedInfo from "../../components/admin/FeaturedInfo";
-import { useSession, getSession} from "next-auth/react"
+import {  getSession} from "next-auth/react"
 import {getToken} from "next-auth/jwt";
 import WidgetSm from "../../components/admin/WidgetSm";
 import WidgetLg from "../../components/admin/WidgetLg";
 import Chart2 from "../../components/admin/Chart2";
-import {useRouter} from "next/router";
+
 
 const AdminHome = ({session, token}) => {
 
 
-    const router = useRouter()
+
 
        return(
 

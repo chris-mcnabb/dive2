@@ -18,7 +18,7 @@ const DropDown = () => {
     useEffect(()=>{
         const dropDownList = async() => {
             try{
-                const res = await axios.get(process.env.VERCEL_URL+`/api/products`);
+                const res = await axios.get(`/api/products`);
                 setSearchData(res.data)
 
             }catch(err){
@@ -68,8 +68,8 @@ const DropDown = () => {
                 </div>
                 {showDropdown &&
                     <div className={styles.dropdown}>
-                        {filteredResults.map((items) => (
-                            <div key={1} className={styles.searchList}>
+                        {filteredResults.map((items, idx) => (
+                            <div key={idx} className={styles.searchList}>
                                 <Link style={{textDecoration: "none", color: "black"}} href={`/shop/${items.categories[0]}/${items._id}`}>
                                     <div className={styles.searchItems}>
                                         <Image className={styles.searchImg} src={mask} alt="" height={30} width={30}/>

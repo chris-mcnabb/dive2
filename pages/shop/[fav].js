@@ -34,12 +34,12 @@ const Favorites = ({session}) => {
                 <div className={styles.cardContainer}>
                     {favorites.map((item, idx) => (
 
-                        <>
+                        <div key={idx}>
 
                                 <ServiceCard key={item._id} product={item}/>
 
 
-                        </>
+                        </div>
                     ))
                     }
                 </div>

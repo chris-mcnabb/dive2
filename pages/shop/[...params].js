@@ -37,8 +37,8 @@ const Product = ({product, images}) => {
 
     useEffect(async()=>{
      try{
-         const res = await axios.get(process.env.VERCEL_URL+`/api/cart?cart=${session.id}`)
-         const favorite = await axios.get(process.env.VERCEL_URL+`/api/favorite?favorite=${session.id}`)
+         const res = await axios.get(`/api/cart?cart=${session.id}`)
+         const favorite = await axios.get(`/api/favorite?favorite=${session.id}`)
          setCart(res.data)
          setFavoriteCart(favorite.data)
      }catch(err){

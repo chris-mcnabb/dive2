@@ -21,7 +21,7 @@ const Navbar = () => {
     const handleClick = () => {
         setShowModal();
     }
-    console.log(session)
+
     return (
         <>
     <Modal showModal={showModal} setShowModal={setShowModal} title={'Nieuw'}/>

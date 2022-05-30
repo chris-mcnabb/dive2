@@ -4,13 +4,10 @@ import Image from "next/image";
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
 import {useDispatch, useSelector} from "react-redux";
-
-
 import logo from "../../public/img/headerlogo.svg";
 import Modal from "../Modal";
 import useToggle from "../hooks/useToggle";
 import {clearCart} from "../../redux/cartSlice";
-
 import {clearFavorite} from "../../redux/favoriteSlice";
 import Hamburger from "./Hamburger";
 import MainNavigation from "./MainNavigation";

@@ -15,28 +15,25 @@ import GuestCheckOut from "./website/GuestCheckOut";
 
 
 const Modal = ({showModal, setShowModal, title, location, cart, img, pic, users, criteria, setCriteria, client, setClient, clientSecret, newSale, setNewSale, product, size, color, shipping, amount, paymentIntent, quantity}) => {
-    const router = useRouter();
 
     const handleClick = (value) => {
-        console.log(value)
+        console.log('--->', value)
         setShowModal()
-        if(title==='Nieuw'){
-            router.push(`/admin/new/${value}`)
-        }
+
 
     }
-
+console.log(title)
     return (
       <>
           {showModal &&
                 <div className={styles.container} >
-                    {title === 'Nieuw' && <NieuwModal handleClick={handleClick} setShowModal={setShowModal}/>}
+                    {title === 'Nieuw' && <NieuwModal  setShowModal={setShowModal}/>}
                     {title === 'Guest' && <GuestCheckOut handleClick={handleClick} setShowModal={setShowModal}/>}
 
                     {title === 'Login' && <Login handleClick={handleClick} location={location} showModal={showModal} setShowModal={setShowModal} />}
                     {title === 'Cart' && <CartSummary quantity={quantity} size={size} color={color} showModal={showModal} setShowModal={setShowModal} product={product} img={img}/>}
                     {title === 'Photo' && <ImageModal  showModal={showModal} setShowModal={setShowModal} img={img} pic={pic}/>}
-                    {title === 'FindUser' && <UserSearch newSale={newSale} setNewSale={setNewSale} client={client} setClient={setClient}  showModal={showModal} setShowModal={setShowModal} users={users}  criteria={criteria} setCriteria={setCriteria}/>}
+                    {title === 'FindUser' && <UserSearch newSale={newSale} setNewSale={setNewSale} client={client} setClient={setClient}  showModal={showModal} setShowModal={setShowModal} search={'search'}  criteria={criteria} setCriteria={setCriteria}/>}
                 </div>
           }
       </>

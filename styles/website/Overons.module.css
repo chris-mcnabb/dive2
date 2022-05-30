@@ -5,6 +5,9 @@
     flex-direction: column;
 
 }
+.terug{
+    cursor: pointer;
+}
 .back{
     display: flex;
     width: 100%;
