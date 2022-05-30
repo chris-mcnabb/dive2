@@ -1,4 +1,3 @@
-import dbConnect from "../../../lib/mongo";
 import User from "../../../models/User";
 import Cart from "../../../models/Cart";
 import Favorite from "../../../models/Favorite";
@@ -7,7 +6,6 @@ mongoose = require("mongoose")
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 const argon2 = require('argon2');
 import NextAuth from "next-auth"
-import EmailProvider from "next-auth/providers/email";
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 

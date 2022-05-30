@@ -4,9 +4,6 @@ import {useRouter} from "next/router";
 import styles from "../../styles/website/Cart.module.css";
 import axios from "axios";
 import Head from "next/head";
-import Script from "next/script";
-import Modal from "../../components/Modal";
-import {ArrowBackIosNewOutlined, DeleteOutline} from "@mui/icons-material";
 import Image from "next/image";
 
 const Order = ({order}) => {
@@ -65,7 +62,7 @@ const Order = ({order}) => {
         <div className={styles.container}>
             <Head>
 
-            </Head>
+                <title></title></Head>
 
             <div className={styles.header}>
                 <h1>Order Number: {id}</h1>

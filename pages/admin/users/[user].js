@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { userColumns, userRows } from '../../../datatablesource';
 import styles from '../../../styles/admin/User.module.css'
 import DataTable from "../../../components/admin/DataTable";
 import Link from "next/link";
 import axios from "axios";
-import Image from "next/image";
 import {useRouter} from "next/router";
 import {Visibility, DeleteOutline} from "@material-ui/icons";
 import TableHeader from "../../../components/admin/TableHeader";

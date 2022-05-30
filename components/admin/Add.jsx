@@ -1,7 +1,5 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import styles from "../../styles/admin/Add.module.css"
-import axios from "axios";
-import {useRouter} from "next/router";
 import New from "./New";
 
 const Add = ({setClose, showModal, setShowModal}) => {

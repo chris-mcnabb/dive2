@@ -38,19 +38,19 @@ const Sidebar = () => {
                     <ul className={styles.sidebarList}>
 
                         <Link href="/admin">
-                            <li className={active == "Home" ? styles.sidebarListItemActive : styles.sidebarListItem} onClick={()=>handleClick("Home")}>
+                            <li className={active === "Home" ? styles.sidebarListItemActive : styles.sidebarListItem} onClick={()=>handleClick("Home")}>
                                 <LineStyle className={styles.sidebarIcon} />
                                 Home
                             </li>
                         </Link>
                         <Link href="/admin/lessons">
-                            <li className={active == "Lessons" ? styles.sidebarListItemActive : styles.sidebarListItem} onClick={()=>handleClick("Lessons")}>
+                            <li className={active === "Lessons" ? styles.sidebarListItemActive : styles.sidebarListItem} onClick={()=>handleClick("Lessons")}>
                             <SchoolOutlined className={styles.sidebarIcon} />
                             Lessons
                         </li>
                         </Link>
                         <Link href="/admin/sales">
-                        <li className={active == "Sales" ? styles.sidebarListItemActive : styles.sidebarListItem} onClick={()=>handleClick("Sales")}>
+                        <li className={active === "Sales" ? styles.sidebarListItemActive : styles.sidebarListItem} onClick={()=>handleClick("Sales")}>
                             <TrendingUp className={styles.sidebarIcon}/>
                             Sales
                         </li>

@@ -1,5 +1,3 @@
-import dbConnect from "../../../../lib/mongo";
-import PendingUser from "../../../../models/PendingUser";
 import axios from "axios";
 
 

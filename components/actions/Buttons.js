@@ -1,4 +1,4 @@
-import {addFavorite, removeFavorite} from "../../redux/favoriteSlice";
+import {removeFavorite} from "../../redux/favoriteSlice";
 import styles from "../../styles/website/ProductPage.module.css";
 import {FavoriteBorderOutlined} from "@mui/icons-material";
 import React, {useEffect} from "react";

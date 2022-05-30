@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from '../../styles/website/Activate.module.css'
-import axios from "axios";
 import {useRouter} from "next/router";
 import Modal from "../../components/Modal";
 import useToggle from "../../components/hooks/useToggle";

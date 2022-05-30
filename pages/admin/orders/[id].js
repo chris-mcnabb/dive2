@@ -2,14 +2,9 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import styles from "../../../styles/admin/Order.module.css";
 import TableHeader from "../../../components/admin/TableHeader";
-import Image from "next/image";
-import mask from "../../../public/img/WEB-Zensee-Pro-M1010S-QBA.jpg";
-import Chart from "../../../components/admin/Chart";
-import {Publish} from "@mui/icons-material";
 import Link from "next/link";
 import {DeleteOutline, Visibility} from "@material-ui/icons";
 import DataTable from "../../../components/admin/DataTable";
-import useToggle from "../../../components/hooks/useToggle";
 
 
 const Order = ({order}) => {

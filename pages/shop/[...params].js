@@ -1,16 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import styles from "../../styles/website/ProductPage.module.css"
 import Image from "next/image";
-import mask from "../../public/img/WEB-Zensee-Pro-M1010S-QBA.jpg"
 import {useRouter} from "next/router";
 import Head from "next/head";
-import {FavoriteBorderOutlined} from "@mui/icons-material";
 import Modal from "../../components/Modal";
 import axios from "axios";
-import {addProduct, newId} from "../../redux/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {setFavorites} from "../../redux/apiCalls";
-import {addFavorite, removeFavorite} from "../../redux/favoriteSlice";
 import {AddToCart, FavoriteButton} from "../../components/actions/Buttons";
 import {newCart} from "../../redux/apiCalls";
 import {getSession, useSession} from "next-auth/react";
@@ -35,15 +30,18 @@ const Product = ({product, images}) => {
     const dispatch = useDispatch();
     const favs = useSelector(state=>state.favorite.favorites)
 
-    useEffect(async()=>{
-     try{
-         const res = await axios.get(`/api/cart?cart=${session.id}`)
-         const favorite = await axios.get(`/api/favorite?favorite=${session.id}`)
-         setCart(res.data)
-         setFavoriteCart(favorite.data)
-     }catch(err){
-         console.log(err)
-     }
+    useEffect(()=>{
+        const loadUser = async() => {
+            try{
+                const res = await axios.get(`/api/cart?cart=${session.id}`)
+                const favorite = await axios.get(`/api/favorite?favorite=${session.id}`)
+                setCart(res.data)
+                setFavoriteCart(favorite.data)
+            }catch(err){
+                console.log(err)
+            }
+        }
+    loadUser()
     },[session])
 
     const handleClick = async(request) => {
@@ -86,7 +84,7 @@ const Product = ({product, images}) => {
                 <div className={styles.left}>
                     <div className={styles.topImage}>
                         <Image className={styles.img} src={`/img/${product.img[index]}`} alt="" height={350} width={350}  objectFit="contain" onClick={()=>{
-                            setTitle('Photo'),
+                            setTitle('Photo')
                                 handleClick('Photo')
                         }}/>
                     </div>

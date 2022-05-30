@@ -1,5 +1,4 @@
 import React from 'react';
-import Index from "../sales";
 
 const Employee = () => {
     return (

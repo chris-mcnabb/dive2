@@ -34,7 +34,7 @@ const Hamburger = ({setOpen, quantity, session, user, setTitle, handleClick, han
                     <Link href="/overons">Over Ons</Link>
                 </li>
                 <li className={styles.menuItem}>
-                    <Link href="/rentals">Rentals</Link>
+                    <Link href="/rental">Rentals</Link>
                 </li>
                 <li className={styles.menuItem}>
                     <Link href="/service">Service</Link>

@@ -1,7 +1,7 @@
 import styles from '../../styles/admin/AdminNavbar2.module.css'
 
 
-import React, {useState} from "react";
+import React from "react";
 import {useRouter} from "next/router";
 import Modal from "../Modal";
 

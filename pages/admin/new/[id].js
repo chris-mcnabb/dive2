@@ -1,14 +1,9 @@
 import styles from '../../../styles/admin/New.module.css'
-import Image from 'next/image'
-import {productInputs} from "../../../formSource";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import {useState} from "react";
 
 import {useRouter} from "next/router";
 import ProductInput from "../../../components/admin/ProductInput";
 import axios from "axios";
 import NewSale from "../../../components/admin/NewSale";
-import {AttachMoney} from "@mui/icons-material";
 import NewUser from "../../../components/admin/NewUser";
 import useToggle from "../../../components/hooks/useToggle";
 import Rental from "../../../components/admin/Rental";

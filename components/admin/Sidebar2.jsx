@@ -1,3 +1,5 @@
+// noinspection HtmlUnknownTarget
+
 import styles from '../../styles/admin/Sidebar2.module.css'
 import React, {useState} from 'react';
 import Link from "next/link"
@@ -135,13 +137,13 @@ const Sidebar = () => {
                     </li>
                         </Link>
                     <Link href="/admin/products">
-                        <li className={active == "Product" ? styles.liActive : styles.li} onClick={()=>handleClick("Product")}>
+                        <li className={active === "Product" ? styles.liActive : styles.li} onClick={()=>handleClick("Product")}>
                         <Store className={styles.icon}/>
                         <span  className={styles.span}>Products</span>
                     </li>
                     </Link>
                     <Link href="/admin/orders">
-                    <li className={active == "Order" ? styles.liActive : styles.li} onClick={()=>handleClick("Order")}>
+                    <li className={active === "Order" ? styles.liActive : styles.li} onClick={()=>handleClick("Order")}>
                         <CreditCard   className={styles.icon}/>
                         <span  className={styles.span}>Orders</span>
                     </li>

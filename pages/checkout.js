@@ -66,7 +66,7 @@ console.log('cart', cart.processed=== 'succeeded')
             {success && <h1>Order Number: {cart.cartId}</h1>}
             <Head>
 
-            </Head>
+                <title></title></Head>
             {!success &&
                 <>
                 {cart.total > 0 ? <h1>Total: €{(cart.total + cart.shipping.shippingCost).toFixed(2)}</h1> : <h1>€0.00</h1>}

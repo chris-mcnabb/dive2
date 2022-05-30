@@ -1,11 +1,11 @@
 //import {loginFailure, loginStart, loginSuccess, logout, registerSuccess, registerFailure} from "./userRedux";
-import {addProduct, editProduct, clearCart, newId, removeProduct, cartStart, getOrder} from "./cartSlice"
+import {addProduct, editProduct, clearCart, newId, removeProduct, cartStart} from "./cartSlice"
 //import {publicRequest, userRequest} from "../requestMethods";
-import {addFavorite, clearFavorite, favoriteStart, removeFavorite} from "./favoriteSlice";
+import {addFavorite, clearFavorite, favoriteStart} from "./favoriteSlice";
 import axios from "axios";
 
 import {addItem} from "./productSlice";
-import {addGuest, clearGuest, guestStart} from "./guestSlice";
+import {clearGuest, guestStart} from "./guestSlice";
 
 export const retrieveCart = async (dispatch, session, cart) => {
 console.log(session)

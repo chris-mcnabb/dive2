@@ -1,16 +1,12 @@
 import {useState} from 'react';
 import styles from "../../../styles/website/Cat.module.css"
-import {drysuit} from "../../../dummyData";
-import Image from "next/image";
 import Link from "next/link"
 import {useRouter} from "next/router";
-import Sidebar from "../../../components/admin/Sidebar";
 import Head from "next/head";
 import axios from "axios";
 import {ArrowBackIosNewOutlined} from "@mui/icons-material";
 import { Pagination } from '@mui/material';
 import ServiceCard from "../../../components/website/ServiceCard";
-import CategoryCard from "../../../components/website/StaffCard";
 
 const Product = ({categoryList, subCat}) => {
     /*products
@@ -43,7 +39,7 @@ console.log(categoryList.length)
             <div className={styles.wrapper}>
               <div className={styles.back}>
                   <div className={styles.backArrow}>
-                      <Link href="/shop">
+                      <Link href="/shop" >
                           <h1 className={styles.terug}><ArrowBackIosNewOutlined/> Terug</h1>
                       </Link>
                   </div>
@@ -64,7 +60,7 @@ console.log(categoryList.length)
                     shape='rounded'
                     className='pagination'
                     onClick={()=>{
-                        setStart(start +12),
+                        setStart(start +12)
                             setEnd(end +12)
 
                     }}

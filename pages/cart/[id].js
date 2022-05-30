@@ -2,20 +2,15 @@ import  {useState, useEffect} from 'react';
 import {DeleteOutline} from '@mui/icons-material'
 import styles from "../../styles/website/Cart.module.css";
 import Image from "next/image";
-import mask from '../../public/img/WEB-Zensee-Pro-M1010S-QBA.jpg'
-import logo from "../../public/img/headerlogo.svg";
-import axios from 'axios';
 import {loadStripe} from "@stripe/stripe-js";
 import {ArrowBackIosNewOutlined} from "@mui/icons-material";
-import {Elements} from "@stripe/react-stripe-js";
 import {useSession} from "next-auth/react";
 import Script from 'next/script'
 import Modal from "../../components/Modal";
 import Head from "next/head";
 import {useSelector, useDispatch} from "react-redux";
-import {useRouter} from "next/router";
 import {shippingMethod} from "../../redux/cartSlice";
-import {deleteCart, deleteCartItem, retrieveProducts, updateCartItem} from "../../redux/apiCalls";
+import {deleteCart, deleteCartItem, updateCartItem} from "../../redux/apiCalls";
 import useToggle from "../../components/hooks/useToggle";
 import Link from "next/link";
 const stripePromise =  loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
@@ -111,7 +106,7 @@ console.log(cart)
             <Script src="https://js.stripe.com/v3" async></Script>
             <Head>
 
-            </Head>
+                <title></title></Head>
             <Modal showModal={showModal} cart={cart} setShowModal={setShowModal} title={title} shipping={10} amount={cart.total} location={'checkout'}  stripePromise={stripePromise} clientSecret={clientSecret}  paymentIntent={paymentIntent}/>
             <div className={styles.header}>
                <div className={styles.backArrow}>

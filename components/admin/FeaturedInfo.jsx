@@ -13,7 +13,7 @@ export default function FeaturedInfo() {
 
     return (
         <div className={styles.featured}>
-            <Link href="/admin/revenue">
+
             <div className={styles.featuredItem}>
                 <span className={styles.featuredTitle}>Revenue</span>
                 <div className={styles.featuredMoneyContainer}>
@@ -28,7 +28,7 @@ export default function FeaturedInfo() {
                 </div>
                 <span className={styles.featuredSub}>Compared to last month</span>
             </div>
-        </Link>
+
             <Link href="/admin/sales">
             <div className={styles.featuredItem}>
                 <span className={styles.featuredTitle}>Sales</span>
