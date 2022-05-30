@@ -2,7 +2,7 @@ import styles from "../../styles/website/Slider.module.css"
 import Image from "next/image";
 import {useEffect, useState} from "react";
 import Link from 'next/link'
-const Slider = ({pics}) => {
+const Slider = ({pics, as}) => {
     const [index, setIndex] = useState(0)
 
 
@@ -33,7 +33,7 @@ const Slider = ({pics}) => {
                     {pics.map((img)=>(
                         img.webPic &&
                         <div key={img._id} className={styles.imgContainer}>
-                        <Image className={styles.img} src={img.webPic} priority={true}  alt="" layout="fill" objectFit="cover"/>
+                        <Image className={styles.img} src={img.webPic} priority={true}  alt="" layout="fill" as={as} objectFit="cover"/>
 
                         </div>
                     ))}

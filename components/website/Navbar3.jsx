@@ -16,6 +16,7 @@ import ShoppingCart from "./ShoppingCart";
 import YouTube from './YouTube'
 import Twitter from './Twitter'
 import Facebook from './Facebook'
+
 const Navbar = () => {
     const {data: session} = useSession()
     const {quantity, cartId} = useSelector(state=>state.cart);
@@ -84,14 +85,14 @@ console.log(session)
                                 <YouTube   style={{color: "#c8f5ff"}}/>
                             </a>
                         </div>
-                        <Link href={`/shop/favorites`}>
+                        <Link href={`/shop/favorites`} passHref>
                         <div className={styles.favorite}>
                             <Heart/>
 
                             <div className={styles.counter2}>{favorite.quantity}</div>
                         </div>
                         </Link>
-                        <Link href={`/cart/${cartId}`}>
+                        <Link href={`/cart/${cartId}`} passHref>
                         <div className={styles.cart}>
                             <ShoppingCart/>
 
